@@ -33,10 +33,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h2>Contact us</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident
-                        officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem,
-                        in, quo totam.</p>
+                    <h2>Contactenos</h2>
+                    <p class="lead">
+                        Puedes escribirnos, llamarnos o incluso venir a nuestras instalaciones ubicadas
+                        en centro Eurocenter en Barrial de Heredia, te despejamos todas tus dudas. <br><br>
+
+                        Tel. 2440-33-07 | 2442-76-88 <br>
+                        Correo Electrónico: soporte@ecomonedacr.com 
+                    </p>
                 </div>
             </div>
         </div>

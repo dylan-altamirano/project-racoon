@@ -26,7 +26,7 @@
 
 {{--HEADER--}}
 
-<header class="bg-primary text-white">
+<header class="bg-success text-white">
     <div class="container text-center">
         <h1>Bienvenido al sitio principal de la moneda ecológica de Costa Rica</h1>
         <p class="lead">En esta página encontraras todo lo que necesitas saber para comenzar a obtener ecomonedas. Es

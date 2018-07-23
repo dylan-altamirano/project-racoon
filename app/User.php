@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'direccion','telefono','activo','balance_ecomonedas'
     ];
 
     /**
@@ -26,4 +26,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Relación de muchos a muchos con la tabla roles
+    public function roles(){
+        return $this->belongsToMany('App\Rol','rol_user','user_id','rol_id')->withTimestamps();
+    }
+
+    public function canjes(){
+        return $this->hasMany('App\Canje');
+    }
+
+    public function canjescupon(){
+        return $this->hasMany('App\CanjeCupon');
+    }
 }

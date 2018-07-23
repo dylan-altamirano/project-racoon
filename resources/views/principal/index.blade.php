@@ -16,6 +16,7 @@
                         <li>Tenés dinero disponible con poca inversión</li>
                         <li>Inpiras a otras personas a ayudar con la causa también</li>
                         <li>Sos un importante factor del cambio para nuestro planeta</li>
+                        <li>Lo que sea</li>
                     </ul>
                 </div>
             </div>

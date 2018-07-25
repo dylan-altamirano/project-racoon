@@ -16,4 +16,8 @@ class Canje extends Model
     public function usuario(){
         return $this->belongsTo('App\User');
     }
+
+    public function materiales(){
+        return $this->belongsToMany('App\Material','canje_detalle','canje_id','material_id')->withPivot('cantidad')->withTimestamps();
+    }
 }

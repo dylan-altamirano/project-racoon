@@ -12,4 +12,8 @@ class CanjeCupon extends Model
      public function usuario(){
         return $this->belongsTo('App\User');
     }
+
+    public function cupones(){
+        return $this->belongsToMany('App\Cupon','canjecupon_detalle','canjecupon_id','cupon_id')->withPivot('cantidad')->withTimestamps();
+    }
 }

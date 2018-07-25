@@ -24,7 +24,7 @@ class CreateCanjeDetalleTable extends Migration
 
             //FK
             $table->foreign('canje_id')->references('id')->on('canjes')->onDelete('cascade');
-            $table->foreign('materiales_id')->references('id')->on('materiales')->onDelete('cascade');
+            $table->foreign('material_id')->references('id')->on('materiales')->onDelete('cascade');
         });
     }
 

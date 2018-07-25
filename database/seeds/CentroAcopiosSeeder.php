@@ -39,11 +39,11 @@ class CentroAcopiosSeeder extends Seeder
         foreach($centros_acopio as $centro){
 
             $centroacopio = new \App\CentroAcopio();
-            $centroacopio->nombre = $centro->nombre;
-            $centroacopio->direccion_exacta = $centro->direccion_exacta;
-            $centroacopio->activo = $centro->activo;
-            $centroacopio->provincia = $centro->provincia;
-            $centroacopio->user_id = $centroacopio->user_id;
+            $centroacopio->nombre = $centro['nombre'];
+            $centroacopio->direccion_exacta = $centro['direccion_exacta'];
+            $centroacopio->activo = $centro['activo'];
+            $centroacopio->provincia = $centro['provincia'];
+            $centroacopio->user_id = $centro['user_id'];
 
             $centroacopio->save();
         }

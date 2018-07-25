@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //Relacion 1:1 con los centros de acopio
+    public function centroacopio(){
+        return $this->hasOne('App\CentroAcopio');
+    }
+
     //Relación de muchos a muchos con la tabla roles
     public function roles(){
         return $this->belongsToMany('App\Rol','rol_user','user_id','rol_id')->withTimestamps();

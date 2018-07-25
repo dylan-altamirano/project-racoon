@@ -19,6 +19,7 @@ class CreateCentroAcopioTable extends Migration
             $table->string('direccion_exacta');
             $table->boolean('activo')->default(true);
             $table->string('provincia');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }

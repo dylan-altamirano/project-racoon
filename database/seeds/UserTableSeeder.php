@@ -46,13 +46,13 @@ class UserTableSeeder extends Seeder
         foreach($users as $usuariop){
 
             $usuario = new \App\User();
-            $usuario->name = $usuariop->name;
-            $usuario->email = $usuariop->email;
-            $usuario->password = $usuariop->password;
-            $usuario->direccion = $usuariop->direccion;
-            $usuario->telefono = $usuariop->telefono;
-            $usuario->activo = $usuariop->activo;
-            $usuario->balance_ecomonedas = $usuariop->balance_ecomonedas;
+            $usuario->name = $usuariop['name'];
+            $usuario->email = $usuariop['email'];
+            $usuario->password = $usuariop['password'];
+            $usuario->direccion = $usuariop['direccion'];
+            $usuario->telefono = $usuariop['telefono'];
+            $usuario->activo = $usuariop['activo'];
+            $usuario->balance_ecomonedas = $usuariop['balance_ecomonedas'];
 
             $usuario->save();
         }

@@ -34,9 +34,9 @@ class RolTableSeeder extends Seeder
 
             $role = new \App\Rol();
 
-            $role->nombre = $rol->nombre;
-            $role->permisos = $rol->permisos;
-            $role->activo = $rol->activo;
+            $role->nombre = $rol['nombre'];
+            $role->permisos = $rol['permisos'];
+            $role->activo = $rol['activo'];
 
             $role->save();
         }

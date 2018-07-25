@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
+    public $table = "roles";
+
     //properties
     protected $fillable = ['nombre', 'permisos', 'activo'];
 

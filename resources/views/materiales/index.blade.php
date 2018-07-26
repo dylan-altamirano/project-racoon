@@ -73,7 +73,7 @@
         
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
+                            <img class="card-img-top" src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
                                     content is a little bit longer.</p>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
+                            <img class="card-img-top" src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
                                     content is a little bit longer.</p>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
+                            <img class="card-img-top" src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
                                     content is a little bit longer.</p>

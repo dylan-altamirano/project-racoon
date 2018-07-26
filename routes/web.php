@@ -12,3 +12,13 @@
 */
 
 Route::get('/', 'PaginaPublicaController@index');
+
+/***Rutas para materiales***/
+Route::group(['prefix'=>'materiales'], function (){
+
+    //Ruta principal 
+    Route::get('',[
+        'uses' => 'MaterialController@index',
+        'as' => 'materiales.index'
+    ]);
+});

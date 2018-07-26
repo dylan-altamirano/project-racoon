@@ -16,6 +16,8 @@
     <!-- Custom styles for this template -->
 <link href="{{ URL::to('css/scrolling-nav.css') }}" rel="stylesheet">
 
+<link href="{{ URL::to('css/album.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">

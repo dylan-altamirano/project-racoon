@@ -38,13 +38,20 @@
 
     <!-- Bootstrap core JavaScript -->
 <script src="{{ URL::to('vendor/jquery/jquery.min.js') }}"></script>
+
+<script src="{{ URL::to('vendor/bootstrap/js/popper.min.js') }}"></script>
+
 <script src="{{ URL::to('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<script src="{{ URL::to('vendor/bootstrap/js/holder.min.js') }}"></script>
 
     <!-- Plugin JavaScript -->
 <script src="{{ URL::to('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom JavaScript for this theme -->
 <script src="{{ URL::to('js/scrolling-nav.js') }}"></script>
+
+
 
 </body>
 

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CentroAcopio extends Model
 {
+
+    public $table = "centro_acopios";
+
     //Properties
     protected $fillable = ['nombre', 'direccion_exacta', 'activo', 'provincia','user_id'];        
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Material;
 
 class MaterialController extends Controller
 {
@@ -13,7 +14,10 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return view('materiales.index');
+
+        $materiales = Material::orderBy('nombre','desc')->get();    
+
+        return view('materiales.index',['materiales'=>$materiales]);
     }
 
     /**
@@ -23,7 +27,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('materiales.create');
     }
 
     /**
@@ -34,7 +38,7 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

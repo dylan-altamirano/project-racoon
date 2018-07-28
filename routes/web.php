@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PaginaPublicaController@index');
+
+Auth::routes();

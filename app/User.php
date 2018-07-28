@@ -44,4 +44,17 @@ class User extends Authenticatable
     public function canjescupon(){
         return $this->hasMany('App\CanjeCupon');
     }
+
+
+    public function tieneAcceso(array $permissions){
+        foreach($this->roles as $role){
+          if($role->tieneAcceso($permissions)){
+            return true;
+          }
+        }
+        return false;
+      }
+      public function tieneRol($name){
+        return $this->roles()->where('name',$name)->count()==1;
+      }
 }

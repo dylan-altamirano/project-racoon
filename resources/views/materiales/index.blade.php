@@ -42,7 +42,7 @@
                     @foreach($materiales as $material)
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" src="{{ URL::to('pictures/image-placeholder.jpg') }}" alt="Card image cap">
+                                <img class="card-img-top img-thumbnail img-fluid" src="{{ URL::to('storage/imagenes/'.$material->imagen) }}" alt="Card image cap">
                                 <div class="card-title">
                                 <h3>{{ $material->nombre }}</h3>
                                 </div>

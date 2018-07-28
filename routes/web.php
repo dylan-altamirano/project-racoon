@@ -21,4 +21,10 @@ Route::group(['prefix'=>'materiales'], function (){
         'uses' => 'MaterialController@index',
         'as' => 'materiales.index'
     ]);
+
+    //Routa para crear nuevo
+    Route::get('create',[
+        'uses' => 'MaterialController@create',
+        'as' => 'materiales.create'
+    ]);
 });

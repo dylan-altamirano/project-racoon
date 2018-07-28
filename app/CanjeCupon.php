@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CanjeCupon extends Model
 {
+    public $table = "canjecupones";
+
     //Properties
     protected $fillable = ['fecha', 'activo', 'user_id'];
 

@@ -2,7 +2,8 @@
 @section('titulo', 'Materiales reciclables') 
 @section('contenido')
 
-    <!--BIENVENIDA DE LA PÁGINA MATERIALES-->
+<!--
+    <!BIENVENIDA DE LA PÁGINA MATERIALES>
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">Materiales Reciclables</h1>
@@ -14,112 +15,46 @@
             </p>
         </div>
     </section>
-    <!--FINAL-->
-
+    <!FINAL> -->
     <!--MOSTRAR MATERIALES-->
     <section id="materiales">
         <div class="album py-5 bg-light">
+            <div class="container" style="margin-bottom:5px">
+                <a href="{{ route('materiales.create') }}" class="btn btn-primary">Crear nuevo</a>
+            </div>
+
             <div class="container">
         
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="vendor/bootstrap/js/holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                    content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+
+                @if($materiales != null)
+                    
+                    @foreach($materiales as $material)
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <img class="card-img-top" src="{{ URL::to('pictures/image-placeholder.jpg') }}" alt="Card image cap">
+                                <div class="card-title">
+                                <h3>{{ $material->nombre }}</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">{{ $material->descripcion }}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                        </div>
+                                    
                                     </div>
-                                    <small class="text-muted">9 mins</small>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <small class="text-muted">Actualizado a las: {{ date_format($material->updated_at, 'g:ia \o\n l jS F Y') }}</small>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="vendor/bootstrap/js/holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                    content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="vendor/bootstrap/js/holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                    content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                    content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                    content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjbsprK-7vcAhXvmOAKHe99CjEQjRx6BAgBEAU&url=http%3A%2F%2Fspazabi.co.za%2Fgallery.html&psig=AOvVaw1G4kA_FRDQDPvEZsK0cNmU&ust=1532666975190280" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                    content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
+                    @endforeach
+                
+                @endif   
                 </div>
             </div>
         </div>

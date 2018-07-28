@@ -27,4 +27,11 @@ Route::group(['prefix'=>'materiales'], function (){
         'uses' => 'MaterialController@create',
         'as' => 'materiales.create'
     ]);
+
+
+    //POST REQUESTS
+    Route::post('create',[
+        'uses' => 'MaterialController@store',
+        'as'=> 'materiales.create'
+    ]);
 });

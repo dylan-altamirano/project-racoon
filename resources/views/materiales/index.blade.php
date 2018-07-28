@@ -16,6 +16,16 @@
         </div>
     </section>
     <!FINAL> -->
+
+    @if (Session::has('info'))
+        <div class="row">
+        
+            <div class="col-md-12">
+                <p class="alert alert-info">{{ Session::get('info') }}</p>
+            </div>
+        </div>
+    @endif
+
     <!--MOSTRAR MATERIALES-->
     <section id="materiales">
         <div class="album py-5 bg-light">

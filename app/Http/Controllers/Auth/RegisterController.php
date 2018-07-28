@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -51,6 +51,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'direccion' => 'required',
+            'telefono' => 'required',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -66,7 +68,19 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'direccion' => $data['direccion'],
+            'telefono' => $data['telefono'],
+            'activo' => 1,
+            'balance_ecomonedas' => 0,
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm(){
+        //Pluck:extraccion que recupera todos los valores de una
+        //clave determinada
+          $roles=\App\Rol::orderBy('nombre')->pluck('nombre','id');
+          //Compact: Crear un array que contiene las variables y su valores
+          return view('auth.register',compact('roles'));
+      }
 }

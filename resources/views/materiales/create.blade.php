@@ -2,43 +2,45 @@
 @section('titulo', 'Materiales reciclables') 
 @section('contenido')
 
+@include('partials.errors')
+
 <section id="create-material">
     <div class="container">
         <div class="row">
             <div class="col-md-10">
 
                 <!--FORMULARIO INICIO-->
-                <form action="">
+            <form action="{{ route('materiales.create') }}" method="POST" enctype="multipart/form-data">
 
                     <div class="card">
                         <div class="card-body">
 
                             <!--Nombre-->
                             <div class="form-group">
-                                <label for="txtNombre">Nombre</label>
-                                <input type="text" class="form-control" id="txtNombre" name="txtNombre">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>
 
                             <div class="form-group">
-                                <label for="txaDescripcion">Descripcion</label>
-                                <textarea class="form-control" id="txaDescripcion" name="txaDescripcion" rows="3"></textarea>
+                                <label for="descripcion">Descripcion</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
                             </div>
 
                             <!--Precio-->
                             <div class="form-group">
-                                <label for="txtPrecio">Precio unitario</label>
-                                <input type="text" class="form-control" id="txtPrecio" name="txtPrecio">
+                                <label for="precio">Precio unitario</label>
+                                <input type="text" class="form-control" id="precio" name="precio">
                             </div>
 
                             <!--Color-->
                             <div class="form-group">
-                                <label for="txtColor">Color</label>
-                                <input type="text" class="form-control" id="txtColor" name="txtColor">
+                                <label for="color">Color</label>
+                                <input type="text" class="form-control" id="color" name="color">
                             </div>
 
                             <!--Activo-->
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="activo">
+                                <input type="checkbox" class="form-check-input" id="activo" name="activo">
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
 

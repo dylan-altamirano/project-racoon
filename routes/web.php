@@ -10,34 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'PaginaPublicaController@index');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Auth::routes();
+Route::get('/', 'PaginaPublicaController@index');

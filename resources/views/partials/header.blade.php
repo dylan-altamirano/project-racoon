@@ -15,11 +15,20 @@
                     <a class="nav-link js-scroll-trigger" href="#services">Centros de Acopio</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Contactenos</a>
                 </li>
+
+                <!--SHOPPING CART-->
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#">
+                        <i class="material-icons" aria-hidden="true">shopping_cart</i> Para Canjear 
+                        <span class="badge badge-light">{{ Session::has('cart')?Session::get('cart')->cantidadTotal:'' }}</span>
+                    </a>
+                </li>
+                <!--FINAL DEL SHOPPING CART-->
             </ul>
 
 

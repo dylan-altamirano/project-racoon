@@ -52,6 +52,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                        <a href="{{ route('canjes.agregarMaterial',['id'=>$material->id]) }}" class="btn btn-sm btn-outline-secondary">Añadir al canje</a>
                                         </div>
                                     
                                     </div>

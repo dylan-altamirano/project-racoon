@@ -13,6 +13,8 @@
     <!-- Bootstrap core CSS -->
 <link href="{{ URL::to('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
+<link href="{{ URL::to('https://fonts.googleapis.com/icon?family=Material+Icons') }}" rel="stylesheet">
+
     <!-- Custom styles for this template -->
 <link href="{{ URL::to('css/scrolling-nav.css') }}" rel="stylesheet">
 
@@ -54,6 +56,10 @@
 <script src="{{ URL::to('js/scrolling-nav.js') }}"></script>
 
 
+<script>
+    //initialize all tooltips on a page would be to select them by their data-toggle attribute
+    $(function () { $('[data-toggle="tooltip"]').tooltip() });
+</script>
 
 </body>
 

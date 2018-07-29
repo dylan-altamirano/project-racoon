@@ -90,42 +90,6 @@ class MaterialController extends Controller
         return redirect()->route('materiales.index')->with('info','El material '.$request->input('nombre').' has sido creado con éxito.');
     }
 
-    /**
-     * Este método se encarga de cargar la imagen al 
-     * servidor y, de proveer el nombre de la imagen a guardar
-     * en la base de datos.
-     * 
-     * @param string $container
-     * @param string $path
-     * @return string $fileNameToStore
-     */
-    private function uploadImage($container, $path){
-
-        if($request->hasFile($container)){
-
-            //get filename with the extension
-            $filenameWithExt = $request->file($container)->getClientOriginalName();
-
-            //Getting just the file name
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-            //Get just ext
-            $extension = $request->file($container)->getClientOriginalExtension();
-
-            //filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-
-            // upload the image
-            $path = $request->file($container)->storeAs($path,$fileNameToStore);
-
-
-        }else{
-            $fileNameToStore = 'default.jpg';
-        }
-
-        return $fileNameToStore;
-
-    }
 
     /**
      * Display the specified resource.
@@ -146,7 +110,10 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        return view('materiales.edit');
+
+        $material = Material::find($id);
+
+        return view('materiales.edit',['material'=>$material]);
     }
 
     /**
@@ -156,9 +123,53 @@ class MaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //Validacion
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+            'descripcion' => 'required|min:10',
+            'precio' => 'required',
+            'color' => 'required',
+            'activo' => 'required',
+            'datafile' => 'image|nullable|max:1999'
+        ]);
+
+        $material = Material::find($request->input('id'));    
+
+         if($request->hasFile('datafile')){
+
+            //get filename with the extension
+            $filenameWithExt = $request->file('datafile')->getClientOriginalName();
+
+            //Getting just the file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //Get just ext
+            $extension = $request->file('datafile')->getClientOriginalExtension();
+
+            //filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            // upload the image
+            $path = $request->file('datafile')->storeAs('public/imagenes',$fileNameToStore);
+
+
+        }else{
+            $fileNameToStore = $material->imagen;
+        }
+
+        $material->nombre = $request->input('nombre');
+        $material->descripcion = $request->input('descripcion');
+        $material->precio_unitario = $request->input('precio');
+        $material->color = $request->input('color');
+        $material->activo = (!$request->has('activo')?0:1);
+        $material->imagen = $fileNameToStore;
+
+        $material->save();
+
+        return redirect()->route('materiales.index')->with('info','El material '.$request->input('nombre').' has sido actualizado con éxito.');
+
     }
 
     /**

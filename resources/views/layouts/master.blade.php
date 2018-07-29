@@ -18,6 +18,8 @@
 
 <link href="{{ URL::to('css/album.css') }}" rel="stylesheet">
 
+<link href="{{ URL::to('css/local.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">

@@ -2,6 +2,15 @@
 @section('titulo', 'Materiales reciclables') 
 @section('contenido')
 
+@if (Session::has('info'))
+    <div class="row">
+    
+        <div class="col-md-12">
+            <p class="alert alert-info">{{ Session::get('info') }}</p>
+        </div>
+    </div>
+@endif
+
 <!--
     <!BIENVENIDA DE LA PÁGINA MATERIALES>
     <section class="jumbotron text-center">
@@ -16,15 +25,6 @@
         </div>
     </section>
     <!FINAL> -->
-
-    @if (Session::has('info'))
-        <div class="row">
-        
-            <div class="col-md-12">
-                <p class="alert alert-info">{{ Session::get('info') }}</p>
-            </div>
-        </div>
-    @endif
 
     <!--MOSTRAR MATERIALES-->
     <section id="materiales">
@@ -42,7 +42,7 @@
                     @foreach($materiales as $material)
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top img-thumbnail img-fluid" src="{{ URL::to('storage/imagenes/'.$material->imagen) }}" alt="Card image cap">
+                                <img class="card-img-top img-thumbnail img-fluid img-custom" src="{{ URL::to('storage/imagenes/'.$material->imagen) }}" alt="Card image cap">
                                 <div class="card-title">
                                 <h3>{{ $material->nombre }}</h3>
                                 </div>
@@ -51,8 +51,7 @@
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                            <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
                                         </div>
                                     
                                     </div>

@@ -47,4 +47,23 @@ Route::group(['prefix'=>'materiales'], function (){
     ]);
 });
 
+/*Rutas para Canjes */
+Route::group(['prefix'=>'canjes'], function (){
+
+    //Ruta principal
+    Route::get('',[
+        'uses' => 'CanjeController@index',
+        'as' => 'canjes.index'
+    ]);
+
+    //Ruta para el shopping cart
+    Route::get('agregar-canje/{id}', [
+        'uses' => 'CanjeController@agregarMaterial',
+        'as'=> 'canjes.agregarMaterial'
+    ]);
+
+});
+
+
+
 Auth::routes();

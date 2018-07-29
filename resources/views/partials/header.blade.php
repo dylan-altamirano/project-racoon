@@ -15,6 +15,9 @@
                     <a class="nav-link js-scroll-trigger" href="#services">Centros de Acopio</a>
                 </li>
                 <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Contactenos</a>
                 </li>
             </ul>

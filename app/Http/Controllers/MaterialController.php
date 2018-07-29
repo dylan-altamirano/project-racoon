@@ -146,7 +146,7 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('materiales.edit');
     }
 
     /**

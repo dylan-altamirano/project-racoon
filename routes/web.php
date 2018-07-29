@@ -22,10 +22,16 @@ Route::group(['prefix'=>'materiales'], function (){
         'as' => 'materiales.index'
     ]);
 
-    //Routa para crear nuevo
+    //Ruta para crear nuevo
     Route::get('create',[
         'uses' => 'MaterialController@create',
         'as' => 'materiales.create'
+    ]);
+
+    //Ruta para actualizar 
+    Route::get('edit/{id}',[
+        'uses' => 'MaterialController@edit',
+        'as'=> 'materiales.edit'
     ]);
 
 
@@ -33,5 +39,10 @@ Route::group(['prefix'=>'materiales'], function (){
     Route::post('create',[
         'uses' => 'MaterialController@store',
         'as'=> 'materiales.create'
+    ]);
+
+    Route::post('update',[
+        'uses'=>'MaterialController@update',
+        'as'=> 'materiales.update'
     ]);
 });

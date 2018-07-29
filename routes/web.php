@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+
 Route::get('/', 'PaginaPublicaController@index');
 
 /***Rutas para materiales***/
@@ -46,3 +46,5 @@ Route::group(['prefix'=>'materiales'], function (){
         'as'=> 'materiales.update'
     ]);
 });
+
+Auth::routes();

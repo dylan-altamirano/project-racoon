@@ -13,6 +13,8 @@
 
 Route::get('/', 'PaginaPublicaController@index');
 
+Route::get('dashboard','PaginaPublicaController@getUserDashboard');
+
 /***Rutas para materiales***/
 Route::group(['prefix'=>'materiales'], function (){
 
@@ -60,6 +62,12 @@ Route::group(['prefix'=>'canjes'], function (){
     Route::get('agregar-canje/{id}', [
         'uses' => 'CanjeController@agregarMaterial',
         'as'=> 'canjes.agregarMaterial'
+    ]);
+
+    //Ruta para crear el canje
+    Route::get('create',[
+        'uses' => 'CanjeController@create',
+        'as' => 'canjes.create'
     ]);
 
 });

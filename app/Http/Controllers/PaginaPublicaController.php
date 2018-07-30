@@ -16,6 +16,12 @@ class PaginaPublicaController extends Controller
         return view('principal.index');
     }
 
+
+    public function getUserDashboard()
+    {
+        return view('principal.dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

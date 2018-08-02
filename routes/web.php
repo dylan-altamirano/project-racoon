@@ -11,7 +11,66 @@
 |
 */
 
-Route::get('/', 'PaginaPublicaController@index');
+
+
+Route::get('/', ['uses' => 'PaginaPublicaController@index','as'=> 'principal.index']);
+Route::group(['prefix'=>'auth'], function (){
+
+    Route::get('edit/{id}',[
+        'uses' => 'ResetController@reset',
+        'as'=> 'auth.resetpassword'
+    ]);
+
+
+    Route::post('update',[
+        'uses'=>'ResetController@update',
+        'as'=> 'auth.update'
+    ]);
+
+});
+
+/***Rutas para centros de acopio***/
+Route::group(['prefix'=>'centros'], function (){
+
+    //Ruta principal 
+    Route::get('',[
+        'uses' => 'CentroAcopioController@index',
+        'as' => 'centros.index'
+    ]);
+
+    //Ruta para crear nuevo
+    Route::get('create',[
+        'uses' => 'CentroAcopioController@create',
+        'as' => 'centros.create'
+    ]);
+
+    //Ruta para actualizar 
+    Route::get('edit/{id}',[
+        'uses' => 'CentroAcopioController@edit',
+        'as'=> 'centros.edit'
+    ]);
+
+    Route::get('habilitar/{id}',[
+        'uses' => 'CentroAcopioController@habilitar',
+        'as'=> 'centros.habilitar'
+    ]);
+
+   
+
+    //POST REQUESTS
+    Route::post('create',[
+        'uses' => 'CentroAcopioController@store',
+        'as'=> 'centros.create'
+    ]);
+
+    Route::post('update',[
+        'uses'=>'CentroAcopioController@update',
+        'as'=> 'centros.update'
+    ]);
+
+
+
+});
 
 Route::get('dashboard','PaginaPublicaController@getUserDashboard');
 

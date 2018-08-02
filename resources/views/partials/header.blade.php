@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="http://127.0.0.1:8000">Ecolones</a>
+        <a class="navbar-brand js-scroll-trigger" href="http://localhost:8000">Ecolones</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                     <a class="nav-link js-scroll-trigger" href="#about">Acerca</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Centros de Acopio</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('centros.index') }}">Centros de Acopio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
@@ -47,17 +47,25 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('auth.resetpassword',['id' => Auth::user()->id]) }}">
+                    {{ __('Cambiar contraseña') }}
+                </a>
 
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('Salir') }}
                 </a>
+                
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
+              
             </li>
+
+           
+
         @endguest
         </div>
         </ul>

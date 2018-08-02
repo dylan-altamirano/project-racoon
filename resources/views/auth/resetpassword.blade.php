@@ -8,16 +8,16 @@
                 <div class="card-header">{{ __('Cambiar la Contraseña') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update') }}">
+                    <form method="POST" action="{{ route('auth.update') }}">
                         @csrf
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                        
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->password }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -28,7 +28,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                            <label for="password-old" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña Actual') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-old" type="password" class="form-control" name="password-old" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña nueva') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -48,6 +56,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+                        <input type="hidden" id="id" name="id" value="{{ $user->id }}">
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

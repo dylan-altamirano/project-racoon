@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', [
-    'uses' => 'PaginaPublicaController@index',
-    'as'=> 'principal.index'
-]);
 
+
+Route::get('/', ['uses' => 'PaginaPublicaController@index','as'=> 'principal.index']);
 Route::group(['prefix'=>'auth'], function (){
 
     Route::get('edit/{id}',[

@@ -133,4 +133,37 @@ Route::group(['prefix'=>'canjes'], function (){
 
 
 
+/***Rutas para cupones***/
+Route::group(['prefix'=>'cupones'], function (){
+
+    //Ruta principal 
+    Route::get('',[
+        'uses' => 'CuponController@index',
+        'as' => 'cupones.index'
+    ]);
+
+    //Ruta para crear nuevo
+    Route::get('create',[
+        'uses' => 'CuponController@create',
+        'as' => 'cupones.create'
+    ]);
+
+    //Ruta para actualizar 
+    Route::get('edit/{id}',[
+        'uses' => 'CuponController@edit',
+        'as'=> 'cupones.edit'
+    ]);
+    //POST REQUESTS
+    Route::post('create',[
+        'uses' => 'CuponController@store',
+        'as'=> 'cupones.create'
+    ]);
+
+    Route::post('update',[
+        'uses'=>'CuponController@update',
+        'as'=> 'cupones.update'
+    ]);
+
+});
+
 Auth::routes();

@@ -14,6 +14,8 @@
 
 
 Route::get('/', ['uses' => 'PaginaPublicaController@index','as'=> 'principal.index']);
+
+
 Route::group(['prefix'=>'auth'], function (){
 
     Route::get('edit/{id}',[
@@ -127,6 +129,19 @@ Route::group(['prefix'=>'canjes'], function (){
     Route::get('create',[
         'uses' => 'CanjeController@create',
         'as' => 'canjes.create'
+    ]);
+
+    Route::post('create', 'CanjeController@store');
+
+});
+
+Route::group(['prefix'=>'clientes'], function(){
+
+    //Ruta para obtener un cliente
+
+    Route::post('show', [
+        'uses' => 'ClienteController@getCliente',
+        'as' => 'clientes.show'
     ]);
 
 });

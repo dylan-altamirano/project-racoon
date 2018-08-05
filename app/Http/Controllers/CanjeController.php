@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Material;
 use Session;
 use App\Cart;
+use App\User;
+use App\CentroAcopio;
+use Validator;
+use Response;
+use Illuminate\Support\Facades\Input;
+use App\http\Requests;
+
 
 class CanjeController extends Controller
 {
@@ -26,7 +34,21 @@ class CanjeController extends Controller
      */
     public function create()
     {
-        return view('canjes.create');
+        //Obtiene el id del usuario logueado en el sistema
+        $user_id = Auth::id();
+
+        $centro_acopio = CentroAcopio::where('user_id', $user_id)->first();
+
+        $centro_acopio = ($centro_acopio!=null)? $centro_acopio:'No posee centro de acopio';
+
+        //Obtiene el carro con los materiales previamente guardados
+        $cart_ant = Session::has('cart') ? Session::get('cart') : null;
+
+        $cart = new Cart($cart_ant);
+
+        $cliente = null;
+
+        return view('canjes.create', ['cliente'=>$cliente,'centro_acopio' => $centro_acopio,'productos'=>$cart->items,'cantidadTotal'=>$cart->cantidadTotal, 'precioTotal'=>$cart->precioTotal]);
     }
 
     /**
@@ -37,7 +59,7 @@ class CanjeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('canjes.create');
     }
 
     /**

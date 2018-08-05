@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="float-left">Canjear Materiales</h2>
-                        <a href="#" class="btn btn-dark btn-lg float-right"><i class="material-icons">monetization_on</i></a>
+                    <a href="{{ route('materiales.index') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">monetization_on</i></a>
                     </div>
                 </div>
             </div>

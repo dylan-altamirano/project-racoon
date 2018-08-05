@@ -5,12 +5,12 @@
 <section id="Canjes">
     <div class="container">
 
+     <!--FORM CHECKOUT CANJE-->
+    <form action="#" method="POST" enctype="multipart/form-data">
+
         <div class="row" style="margin-bottom:3%">
                 <!--INICIO ENCABEZADO CANJE-->
-                <div class="col-md-12">
-
-                    <!--FORM CHECKOUT CANJE-->
-                    <form action="#" method="POST">        
+                <div class="col-md-12">      
 
                     <div class="card">
                         <div class="card-header"><h5>Detalles del Canje</h5></div>
@@ -19,12 +19,25 @@
                                 <label for="fecha"><h6>Fecha</h6></label> <span class="badge badge-pill badge-light">{{ date('d/M/y h:i:sa') }}</span>
                             </div>
             
-                            <div class="form-group">
-                                <label for="centro_acopios">Centro de Acopio</label>
-                                <select class="form-control" name="centro_acopios" id="centro_acopios">
-                                                <option value="#">option1</option>
-                                                <option value="#">option2</option>
-                                </select>
+                            <div class="form-group row">
+                                <label for="centro_acopios" class="col-md-2">Centro de Acopio</label>
+                                <div class="col-md-4">
+                                <input type="hidden" name="centro_acopio_nombre" id="centro_acopio_id" value="{{ $centro_acopio->id }}">
+                                    <h5><span class="badge badge-light">{{ $centro_acopio->nombre }}</span></h5>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Cliente" class="col-md-2">Consulta Cliente</label>
+                                <div class="col-md-3">
+                                        <input type="text" name="emailCliente" id="emailCliente" class="form-control">
+                                </div>
+                                <div class="show col-md-3">
+                                    <button type="button" class="btn btn-success buscarCliente" data-toggle="tooltip" data-placement="top" title="Comprobar nombres" ><i class="material-icons">how_to_reg</i></button>
+                                </div>
+                                <div class="col-md-4 float-right"><p class="float-left">Cliente:</p>
+                                  <h4><label id="lblNombreCliente" class="col-md-6 badge badge-light"></label></h4>    
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -51,42 +64,52 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <th scope="row">1</th>
-                                    <td>Material 1</td>
-                                    <td>0</td>
-                                    <td>100.00</td>
+                                  @foreach($productos as $item)
+                                        <tr>
+                                            <th scope="col">{{ $item['item']['id']}}</th>
+                                            <td scope="col">{{ $item['item']['nombre']}}</td>
+                                            <td scope="col">{{ $item['cant'] }}</td>
+                                            <td scope="col">{{ '₡ '.$item['precio'] }}</td>
+                                        </tr>
+                                  @endforeach 
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <!--FIN DETALLES DEL CANJE-->
-            </form>
-            <!--FINAL DEL FORM-->
-
         </div>
         <!--Final Row-->
 
+        <!--Parte de Totales del Canje-->
         <div class="row" style="margin-top:3%">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="body">
+                    <div class="card-body">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
                                     <th scope="row">Total de Materiales: </th>
-                                    <td>0</td>
+                                    <td><strong>{{ $cantidadTotal }}</strong></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total de Ecomonedas: </th>
-                                    <td>0.00</td>
+                                    <td><strong>{{' ₡'.$precioTotal}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-footer">
+                        @csrf
+                        <button type="submit" name="submit" id="submit" class="btn btn-success btn-lg float-right">Crear Canje<i class="material-icons">beenhere</i></button>
+                    </div>
                 </div>
             </div>
         </div>
+        <!--Final parte de totales del Canje-->
+
+    </form>
+        <!--FINAL DEL FORM-->
 
     </div>
 </section>

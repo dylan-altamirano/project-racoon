@@ -130,8 +130,12 @@ Route::group(['prefix'=>'canjes'], function (){
         'uses' => 'CanjeController@create',
         'as' => 'canjes.create'
     ]);
-
-    Route::post('create', 'CanjeController@store');
+    
+    //Ruta para guardar el canje
+    Route::post('create', [
+        'uses' => 'CanjeController@store',
+        'as' => 'canjes.create'
+    ]);
 
 });
 

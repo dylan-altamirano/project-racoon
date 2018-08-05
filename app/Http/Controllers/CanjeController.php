@@ -8,11 +8,14 @@ use App\Material;
 use Session;
 use App\Cart;
 use App\User;
+use App\Canje;
 use App\CentroAcopio;
 use Validator;
 use Response;
 use Illuminate\Support\Facades\Input;
 use App\http\Requests;
+
+
 
 
 class CanjeController extends Controller
@@ -59,7 +62,72 @@ class CanjeController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect()->route('canjes.create');
+
+        $this->validate($request, [
+            'fecha' => 'required',
+            'emailCliente' => 'required | min:10',
+            'cliente' => 'required',
+            'centro_acopio_id' => 'required'
+        ]);
+
+        //Obtiene los objetos necesarios
+        //Obtiene el cliente
+        $cliente = User::find($request->input('cliente'));
+
+        //Obtiene el centro de acopio
+        $centro_acopio = CentroAcopio::find($request->input('centro_acopio_id'));
+
+        //Obtiene los materiales
+        //Obtiene el carro con los materiales previamente guardados
+        $cart_ant = Session::has('cart') ? Session::get('cart') : null;
+
+        $cart = new Cart($cart_ant);
+
+        //Crea un arreglo con los items del carro de compras
+        $materiales_items = $cart->items;
+
+        //Sacar la colección solo de materiales
+        $materiales_collection = $this->obtieneArregloMateriales($materiales_items);
+
+        //Convertir la coleccion a un arreglo
+        $materiales = $materiales_collection->all();
+
+        //Crea el objeto Canje 
+        $canje = new Canje([
+            'fecha' => $request->input('fecha'),
+            'activo' => true
+        ]);
+
+        //Asocia el centro de acopio
+        $canje->centrosacopio()->associate($centro_acopio);
+
+        //Asocia el cliente con el canje
+        $canje->usuario()->associate($cliente);
+
+        $canje->save();
+
+        //Asocia el arreglo de materiales al canje
+        $canje->materiales()->attach($materiales===null?[]:$materiales);    
+
+
+        return redirect()->route('canjes.index')->with('info','El canje has sido creado con exito');
+    }
+
+
+    public function obtieneArregloMateriales($arreglo){
+
+        $materiales = collect([]);
+
+            foreach($arreglo as $item){
+
+                $material = new Material;
+
+                $material = $item['item'];
+
+                $materiales->push($material);
+            }
+
+        return $materiales;
     }
 
     /**

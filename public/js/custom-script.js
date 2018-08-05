@@ -25,6 +25,7 @@ $(".show").on('click','.buscarCliente',function(e){
 
                 if (data.name != null) {
                     $('#lblNombreCliente').text(data.name);
+                    $('#cliente_id').val(data.id);
                 }else{
                     $('#lblNombreCliente').text('No existe el usuario');
                 }

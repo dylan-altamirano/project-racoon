@@ -2,15 +2,6 @@
 @section('titulo', 'Materiales reciclables') 
 @section('contenido')
 
-@if (Session::has('info'))
-    <div class="row">
-    
-        <div class="col-md-12">
-            <p class="alert alert-info">{{ Session::get('info') }}</p>
-        </div>
-    </div>
-@endif
-
 <!--
     <!BIENVENIDA DE LA PÁGINA MATERIALES>
     <section class="jumbotron text-center">
@@ -30,11 +21,22 @@
     <section id="materiales">
         <div class="album py-5 bg-light">
             <div class="container" style="margin-bottom:5px">
+
+                @if (Session::has('info'))
+                <div class="row">
+                
+                    <div class="col-md-12">
+                        <p class="alert alert-info">{{ Session::get('info') }}</p>
+                    </div>
+                </div>
+                @endif
+
+
                 <a href="{{ route('materiales.create') }}" class="btn btn-primary">Crear nuevo</a>
             </div>
 
             <div class="container">
-        
+
                 <div class="row">
 
                 @if($materiales != null)

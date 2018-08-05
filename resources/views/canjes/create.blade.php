@@ -2,11 +2,12 @@
 @section('titulo', 'Canjes') 
 @section('contenido')
 
+@include('partials.errors')
 <section id="Canjes">
     <div class="container">
 
      <!--FORM CHECKOUT CANJE-->
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('canjes.create') }}" method="POST" enctype="multipart/form-data">
 
         <div class="row" style="margin-bottom:3%">
                 <!--INICIO ENCABEZADO CANJE-->
@@ -17,12 +18,13 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="fecha"><h6>Fecha</h6></label> <span class="badge badge-pill badge-light">{{ date('d/M/y h:i:sa') }}</span>
+                                <input type="hidden" name="fecha" id="fecha" value="{{ date('Y-m-d H:i:s') }}"> <!--Campo Hidden para guardar la fecha-->
                             </div>
             
                             <div class="form-group row">
                                 <label for="centro_acopios" class="col-md-2">Centro de Acopio</label>
                                 <div class="col-md-4">
-                                <input type="hidden" name="centro_acopio_nombre" id="centro_acopio_id" value="{{ $centro_acopio->id }}">
+                                <input type="hidden" name="centro_acopio_id" id="centro_acopio_id" value="{{ $centro_acopio->id }}"> <!--Campo Hidden para guardar el id del centro de acopio-->
                                     <h5><span class="badge badge-light">{{ $centro_acopio->nombre }}</span></h5>
                                 </div>
                             </div>
@@ -35,7 +37,8 @@
                                     <button type="button" class="btn btn-success buscarCliente" data-toggle="tooltip" data-placement="top" title="Comprobar nombres" ><i class="material-icons">how_to_reg</i></button>
                                 </div>
                                 <div class="col-md-4 float-right"><p class="float-left">Cliente:</p>
-                                  <h4><label id="lblNombreCliente" class="col-md-6 badge badge-light"></label></h4>    
+                                  <h4><label id="lblNombreCliente" class="col-md-6 badge badge-light"></label></h4>
+                                  <input type="hidden" name="cliente" id="cliente_id">    <!--Campo Hidden para guardar el id del cliente-->
                                 </div>
                                 
                             </div>

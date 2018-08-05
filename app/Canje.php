@@ -12,11 +12,11 @@ class Canje extends Model
     protected $fillable = ['fecha', 'activo','centro_acopio_id', 'user_id'];
 
     public function centrosacopio(){
-        return $this->belongsTo('App\CentroAcopio');
+        return $this->belongsTo('App\CentroAcopio', 'centro_acopio_id');
     }
 
     public function usuario(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function materiales(){

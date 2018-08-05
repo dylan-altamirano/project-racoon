@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\CentroAcopio;
 use Auth;
 
+use Gate;
+use Illuminate\Support\Facades\Storage;
+
 class CentroAcopioController extends Controller
 {
     /**
@@ -16,7 +19,7 @@ class CentroAcopioController extends Controller
     public function index()
     {
 
-        $centros = CentroAcopio::orderBy('nombre','desc')->get();    
+        $centros = CentroAcopio::orderBy('nombre','desc')->paginate(6);    
 
         return view('centros.index',['centros'=>$centros]);
     }

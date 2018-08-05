@@ -39,7 +39,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                        
                                     <div class="btn-group">
-                                       <a href="{{ route('cupones.edit',['id'=> $cupon->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                       <a href="{{ route('cupones.edit',['id'=> $cupon->id]) }}" class="btn btn-outline-info">Editar</a>
                                     </div>
 
                                     

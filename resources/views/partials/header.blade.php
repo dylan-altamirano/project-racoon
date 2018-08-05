@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background-color: #01DF3A;">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="http://localhost:8000">Ecolones</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -8,9 +8,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">Acerca</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('centros.index') }}">Centros de Acopio</a>
                 </li>
@@ -22,6 +20,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Contactenos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('otros.acerca')}}">Acerca</a>
                 </li>
 
                 @auth

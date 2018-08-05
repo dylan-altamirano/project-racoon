@@ -15,6 +15,7 @@
     <!--MOSTRAR Centros-->
     <section id="centros">
         <div class="album py-5 bg-light">
+       <!-- <div class="container text-center"><img src="storage/imagenes/centros.PNG" alt="boat" style="width:100%;height:349px;width:500px;"></div>-->
             <div class="container" style="margin-bottom:5px">
                 <a href="{{ route('centros.create') }}" class="btn btn-primary">Crear nuevo</a>
             </div>
@@ -29,24 +30,24 @@
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-title">
-                                <h3>{{ $centro->nombre }}</h3>
+                                <h2>{{ $centro->provincia }}</h2>
+                                
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text">{{ $centro->provincia }}
-                                    </p>
+                                <h3>{{ $centro->nombre }}</h3>
                                     <p class="card-text">{{ $centro->direccion_exacta }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                        
                                     <div class="btn-group">
-                                       <a href="{{ route('centros.edit',['id'=> $centro->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                       <a href="{{ route('centros.edit',['id'=> $centro->id]) }}" class="btn btn-outline-info">Editar</a>
                                     </div>
 
                                     <div class="btn-group">
-                                    <a href="{{ route('centros.habilitar',['id'=> $centro->id]) }}" class="btn btn-sm btn-outline-secondary">{{ ($centro->activo)?"Deshabilitar":"Habilitar" }}</a>
+                                    <a href="{{ route('centros.habilitar',['id'=> $centro->id]) }}" class="btn btn-outline-danger">{{ ($centro->activo)?"Deshabilitar":"Habilitar" }}</a>
 
                                      </div>
-
+                                     
                                     
                                     </div>
                                 </div>
@@ -59,9 +60,12 @@
                 
                 @endif   
                 </div>
+    <div class="col-md-12 text-center">
+        {{$centros->links()}}
+    </div>
             </div>
+            
         </div>
     </section>
     <!--FINAL MOSTRAR CENTROS-->
-
 @endsection

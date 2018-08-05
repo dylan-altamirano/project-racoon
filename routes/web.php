@@ -166,4 +166,8 @@ Route::group(['prefix'=>'cupones'], function (){
 
 });
 
+Route::get('acerca', function () {
+    return view('otros.acerca-de');
+})->name('otros.acerca');
+
 Auth::routes();

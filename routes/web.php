@@ -106,7 +106,10 @@ Route::group(['prefix'=>'centros'], function (){
 
 });
 
-Route::get('dashboard','PaginaPublicaController@getUserDashboard');
+Route::get('dashboard',[
+    'uses' => 'PaginaPublicaController@getUserDashboard',
+    'as' => 'principal.dashboard'
+]);
 
 /***Rutas para materiales***/
 Route::group(['prefix'=>'materiales'], function (){

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //Overriding the method to redirect the user in case 
+        //they fall into an 'unauthorized' action when the 
+        //middleware blocks them while trying to manually enter the route 
+        if ($exception instanceof AuthorizationException) {
+            return redirect()->route('principal.index');
+        }    
+
+
         return parent::render($request, $exception);
     }
 }

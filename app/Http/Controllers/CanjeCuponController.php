@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
+use App\Canje;
 
-class PaginaPublicaController extends Controller
+class CanjeCuponController extends Controller
 {
-
     /**
      * Create a new controller instance
      * 
@@ -14,9 +16,8 @@ class PaginaPublicaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>'index']);
+        $this->middleware('auth');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -25,13 +26,13 @@ class PaginaPublicaController extends Controller
      */
     public function index()
     {
-        return view('principal.index');
-    }
+        
+        $cliente = Auth::user();
 
+        $canjes = Canje::where('user_id', $cliente->id)->get();
 
-    public function getUserDashboard()
-    {
-        return view('principal.dashboard');
+        return view('billeteravirtual.index',['cliente'=>$cliente,'canjes'=>$canjes]);
+
     }
 
     /**
@@ -41,7 +42,7 @@ class PaginaPublicaController extends Controller
      */
     public function create()
     {
-        //
+        return view('billeteravirtual.create');
     }
 
     /**

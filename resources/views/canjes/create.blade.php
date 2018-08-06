@@ -57,6 +57,7 @@
                             <h5 class="card-title float-left">Materiales a Canjear</h5>   
                         </div>
                         <div class="card-body">
+                         @if($productos !=null)   
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -67,6 +68,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                
                                   @foreach($productos as $item)
                                         <tr>
                                             <th scope="col">{{ $item['item']['id']}}</th>
@@ -74,9 +76,16 @@
                                             <td scope="col">{{ $item['cant'] }}</td>
                                             <td scope="col">{{ '₡ '.$item['precio'] }}</td>
                                         </tr>
-                                  @endforeach 
-                                </tbody>
-                            </table>
+                                  @endforeach
+
+                                  </tbody>
+                                </table>
+                            @else
+                                
+                                <div class="alert alert-warning">No posee materiales agregados a su canje todavía.</div>  
+                                        
+                            @endif   
+                             
                         </div>
                     </div>
                 </div>
@@ -104,7 +113,13 @@
                     </div>
                     <div class="card-footer">
                         @csrf
-                        <button type="submit" name="submit" id="submit" class="btn btn-success btn-lg float-right">Crear Canje<i class="material-icons">beenhere</i></button>
+
+                        @if(Session::get('cart')==null)
+                            <button type="submit" name="submit" id="submit" class="btn btn-success btn-lg float-right" disabled>Crear Canje<i class="material-icons">beenhere</i></button>
+                        @else
+                            <button type="submit" name="submit" id="submit" class="btn btn-success btn-lg float-right">Crear Canje<i class="material-icons">beenhere</i></button>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

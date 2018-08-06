@@ -56,9 +56,15 @@
                                     @can('admin-all')
                                         <div class="btn-group">
                                             <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
-                                        <a href="{{ route('canjes.agregarMaterial',['id'=>$material->id]) }}" class="btn btn-sm btn-outline-secondary">Añadir al canje</a>
+                                    
                                         </div>
                                     @endcan
+                                    @can('admin-center')
+                                        <div class="btn-group">    
+                                            <a href="{{ route('canjes.agregarMaterial',['id'=>$material->id]) }}" class="btn btn-sm btn-outline-secondary">Añadir al canje</a>
+                                        </div>
+                                    @endcan      
+                                    
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">

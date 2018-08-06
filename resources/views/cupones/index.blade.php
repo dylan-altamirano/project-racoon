@@ -15,10 +15,11 @@
     <!--MOSTRAR Cupones-->
     <section id="cupones">
         <div class="album py-5 bg-light">
+        @can('admin-all')
             <div class="container" style="margin-bottom:5px">
                 <a href="{{ route('cupones.create') }}" class="btn btn-primary">Crear nuevo</a>
             </div>
-
+        @endcan
             <div class="container">
         
                 <div class="row">
@@ -37,11 +38,11 @@
                                     <p class="card-text">{{ $cupon->cant_monedas }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                       
+                                    @can('admin-all')
                                     <div class="btn-group">
                                        <a href="{{ route('cupones.edit',['id'=> $cupon->id]) }}" class="btn btn-outline-info">Editar</a>
                                     </div>
-
+                                    @endcan
                                     
                                     </div>
                                 </div>

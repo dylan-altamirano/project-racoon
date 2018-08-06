@@ -29,10 +29,11 @@
     <!--MOSTRAR MATERIALES-->
     <section id="materiales">
         <div class="album py-5 bg-light">
+        @can('admin-all')
             <div class="container" style="margin-bottom:5px">
                 <a href="{{ route('materiales.create') }}" class="btn btn-primary">Crear nuevo</a>
             </div>
-
+        @endcan
             <div class="container">
         
                 <div class="row">
@@ -50,11 +51,12 @@
                                     <p class="card-text">{{ $material->descripcion }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
+                                    @can('admin-all')
                                         <div class="btn-group">
                                             <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
                                         <a href="{{ route('canjes.agregarMaterial',['id'=>$material->id]) }}" class="btn btn-sm btn-outline-secondary">Añadir al canje</a>
                                         </div>
-                                    
+                                    @endcan
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">

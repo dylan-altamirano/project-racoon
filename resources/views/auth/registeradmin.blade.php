@@ -8,10 +8,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Registrarse') }}</div>
+                    <div class="card-header">{{ __('Registrar usuarios') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('auth.registeradmin') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -93,12 +93,25 @@
                                 </div>
                             </div>
 
-                            @foreach ($roles as $id => $role)
-                            @if($role == "Cliente")
-                                <input type="hidden" value="{{$id}}" id="role" name="role">
+
+                            <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">Roles</label>
+                                <div class="col-md-6">
+                            <select id="role" class="form-control" name="role">
+                                @foreach ($roles as $id => $role)
+                                    @if($role->nombre == "Cliente" || $role->nombre == "Administrador Centro Acopio")
+                                        <option value="{{$role->id}}">{{$role->nombre}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            @if ($errors->has('role'))
+                                <span class="invalid-feedback">
+                                     <strong>{{ $errors->first('role') }}</strong>
+                                </span>
                             @endif
-                            @endforeach
-                            
+                            </div>
+                            </div>
+
                             
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

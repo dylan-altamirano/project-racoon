@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background-color: #01DF3A;">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="http://localhost:8000">Ecolones</a>
+        <a class="navbar-brand js-scroll-trigger" href="{{ route('principal.index')}}">Ecolones</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -18,6 +18,17 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('cupones.index') }}">Cupones</a>
                 </li>
+                
+                @can('admin-all')
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('auth.registeradmin') }}">Crear usuarios</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('auth.index') }}">Lista clientes</a>
+                </li>
+                @endcan
+               
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Contactenos</a>
                 </li>
@@ -25,7 +36,7 @@
                     <a class="nav-link js-scroll-trigger" href="{{ route('otros.acerca')}}">Acerca</a>
                 </li>
 
-                @auth
+                @can('admin-center')
                     <!--SHOPPING CART-->
                     <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('canjes.create') }}">
@@ -34,7 +45,7 @@
                         </a>
                     </li>
                     <!--FINAL DEL SHOPPING CART-->
-                @endauth
+                @endcan
             </ul>
 
 
@@ -54,7 +65,9 @@
                 <a class="dropdown-item" href="{{ route('auth.resetpassword',['id' => Auth::user()->id]) }}">
                     {{ __('Cambiar contraseña') }}
                 </a>
-
+                <a class="dropdown-item" href="{{ route('auth.edit',['id' => Auth::user()->id]) }}">
+                    {{ __('Actualizar informacion') }}
+                </a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background-color: #01DF3A;">
+<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav" style="background-color: #009900;">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="{{ route('principal.index')}}">Ecolones</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -15,9 +15,11 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
                 </li>
+                @can('admin-all')
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('cupones.index') }}">Cupones</a>
                 </li>
+                @endcan
                 
                 @can('admin-all')
                 <li class="nav-item">

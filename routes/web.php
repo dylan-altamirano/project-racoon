@@ -75,18 +75,21 @@ Route::group(['prefix'=>'centros'], function (){
     //Ruta para crear nuevo
     Route::get('create',[
         'uses' => 'CentroAcopioController@create',
-        'as' => 'centros.create'
+        'as' => 'centros.create',
+        'middleware'=> 'can:admin-all'
     ]);
 
     //Ruta para actualizar 
     Route::get('edit/{id}',[
         'uses' => 'CentroAcopioController@edit',
-        'as'=> 'centros.edit'
+        'as'=> 'centros.edit',
+        'middleware' => 'can:admin-all, id'
     ]);
 
     Route::get('habilitar/{id}',[
         'uses' => 'CentroAcopioController@habilitar',
-        'as'=> 'centros.habilitar'
+        'as'=> 'centros.habilitar',
+        'middleware' => 'can:admin-all, id'
     ]);
 
    
@@ -94,12 +97,14 @@ Route::group(['prefix'=>'centros'], function (){
     //POST REQUESTS
     Route::post('create',[
         'uses' => 'CentroAcopioController@store',
-        'as'=> 'centros.create'
+        'as'=> 'centros.create',
+        'middleware' => 'can:admin-all'
     ]);
 
     Route::post('update',[
         'uses'=>'CentroAcopioController@update',
-        'as'=> 'centros.update'
+        'as'=> 'centros.update',
+        'middleware' => 'can:admin-all'
     ]);
 
 
@@ -112,7 +117,7 @@ Route::get('dashboard',[
 ]);
 
 /***Rutas para materiales***/
-Route::group(['prefix'=>'materiales'], function (){
+Route::group(['prefix'=>'materiales', 'middleware'=> 'auth'], function (){
 
     //Ruta principal 
     Route::get('',[
@@ -123,59 +128,68 @@ Route::group(['prefix'=>'materiales'], function (){
     //Ruta para crear nuevo
     Route::get('create',[
         'uses' => 'MaterialController@create',
-        'as' => 'materiales.create'
+        'as' => 'materiales.create',
+        'middleware' => 'can:admin-all'
     ]);
 
     //Ruta para actualizar 
     Route::get('edit/{id}',[
         'uses' => 'MaterialController@edit',
-        'as'=> 'materiales.edit'
+        'as'=> 'materiales.edit',
+        'middleware' => 'can:admin-all,id'
     ]);
 
 
     //POST REQUESTS
     Route::post('create',[
         'uses' => 'MaterialController@store',
-        'as'=> 'materiales.create'
+        'as'=> 'materiales.create',
+        'middleware' => 'can:admin-all'
     ]);
 
     Route::post('update',[
         'uses'=>'MaterialController@update',
-        'as'=> 'materiales.update'
+        'as'=> 'materiales.update',
+        'middleware' => 'can:admin-all'
     ]);
 });
 
 /*Rutas para Canjes */
-Route::group(['prefix'=>'canjes'], function (){
+Route::group(['prefix'=>'canjes','middleware' => 'auth'], function (){
 
     //Ruta principal
     Route::get('',[
         'uses' => 'CanjeController@index',
-        'as' => 'canjes.index'
+        'as' => 'canjes.index',
+        'middleware' => 'can:admin-center'
     ]);
 
     //Ruta para el shopping cart
     Route::get('agregar-canje/{id}', [
         'uses' => 'CanjeController@agregarMaterial',
-        'as'=> 'canjes.agregarMaterial'
+        'as'=> 'canjes.agregarMaterial',
+        'middleware' => 'can:admin-center,id'
     ]);
 
     //Ruta para crear el canje
     Route::get('create',[
         'uses' => 'CanjeController@create',
-        'as' => 'canjes.create'
+        'as' => 'canjes.create',
+        'middleware' => 'can:admin-center'
     ]);
     
     //Ruta para guardar el canje
     Route::post('create', [
         'uses' => 'CanjeController@store',
-        'as' => 'canjes.create'
+        'as' => 'canjes.create',
+        'middleware' => 'can:admin-center'
     ]);
 
     //Ruta para mostrar un canje
     Route::get('show/{id}',[
         'uses' => 'CanjeController@show',
-        'as' => 'canjes.show'
+        'as' => 'canjes.show',
+        'middleware' => 'can:admin-center,id'
     ]);
 
 });
@@ -194,34 +208,38 @@ Route::group(['prefix'=>'clientes'], function(){
 
 
 /***Rutas para cupones***/
-Route::group(['prefix'=>'cupones'], function (){
+Route::group(['prefix'=>'cupones', 'middleware'=> 'auth'], function (){
 
     //Ruta principal 
     Route::get('',[
         'uses' => 'CuponController@index',
-        'as' => 'cupones.index'
+        'as' => 'cupones.index',
     ]);
 
     //Ruta para crear nuevo
     Route::get('create',[
         'uses' => 'CuponController@create',
-        'as' => 'cupones.create'
+        'as' => 'cupones.create',
+        'middleware' => 'can:admin-all'
     ]);
 
     //Ruta para actualizar 
     Route::get('edit/{id}',[
         'uses' => 'CuponController@edit',
-        'as'=> 'cupones.edit'
+        'as'=> 'cupones.edit',
+        'middleware' => 'can:admin-all, id'
     ]);
     //POST REQUESTS
     Route::post('create',[
         'uses' => 'CuponController@store',
-        'as'=> 'cupones.create'
+        'as'=> 'cupones.create',
+        'middleware' => 'can:admin-all'
     ]);
 
     Route::post('update',[
         'uses'=>'CuponController@update',
-        'as'=> 'cupones.update'
+        'as'=> 'cupones.update',
+        'middleware' => 'can:admin-all'
     ]);
 
 });
@@ -230,6 +248,24 @@ Route::get('acerca', function () {
     return view('otros.acerca-de');
 })->name('otros.acerca');
 
+
+/***Rutas para BILLETERA VIRTUAL-CANJECUPONES***/
+Route::group(['prefix' => 'billeteravirtual'], function () {
+
+    //Ruta principal 
+    Route::get('', [
+        'uses' => 'CanjeCuponController@index',
+        'as' => 'billeteravirtual.index',
+        'middleware'=>'can:cliente'
+    ]);
+
+    Route::get('create',[
+        'uses' => 'CanjeCuponController@create',
+        'as' => 'billeteravirtual.create',
+        'middleware'=>'can:cliente'
+    ]);
+
+});
 
 
 Auth::routes();

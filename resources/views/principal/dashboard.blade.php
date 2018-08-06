@@ -9,6 +9,7 @@
 
         <h2 class="text-center" style="margin-bottom:2%">Hola {{ Auth::user()->name }}, bienvenido a Ecomonedas!</h2>
 
+        @can('admin-center')
             <div class="col-md-12" style="margin-bottom:3%">
                 <div class="card">
                     <div class="card-body">
@@ -17,13 +18,13 @@
                     </div>
                 </div>
             </div>
-       
+       @endcan
         
             <div class="col-md-12" style="margin-bottom:3%">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="float-left">Canjear Cupones</h2>
-                        <a href="#" class="btn btn-dark btn-lg float-right"><i class="material-icons">style</i></a>
+                        <h2 class="float-left">Billetera Virtual</h2>
+                    <a href="{{ route('billeteravirtual.index') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">style</i></a>
                     </div>
                 </div>
             </div>

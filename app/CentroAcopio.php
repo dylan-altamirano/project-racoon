@@ -13,7 +13,7 @@ class CentroAcopio extends Model
     protected $fillable = ['nombre', 'direccion_exacta', 'activo', 'provincia','user_id'];        
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function canjes(){

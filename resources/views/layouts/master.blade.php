@@ -41,7 +41,7 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-<script src="{{ URL::to('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ URL::to('js/jquery-3.3.1.js') }}"></script>
 
 <script src="{{ URL::to('vendor/bootstrap/js/popper.min.js') }}"></script>
 
@@ -54,6 +54,7 @@
 
     <!-- Custom JavaScript for this theme -->
 <script src="{{ URL::to('js/scrolling-nav.js') }}"></script>
+<script src="{{ URL::to('js/custom-script.js') }}"></script>
 
 
 <script>

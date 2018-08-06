@@ -31,10 +31,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <th scope="row">1</th>
-                                    <td>San Jose</td>
-                                    <td>07/20/2018</td>
-                                    <td><a href="#" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Editar"><i class="material-icons">create</i></a></td>
+                                    @foreach($canjes as $canje)
+                                      <tr>
+                                        <th scope="row">{{ $canje->id }}</th>
+                                        <td>{{ $canje->centrosacopio->nombre}}</td>
+                                        <td>{{ $canje->fecha }}</td>
+                                      <td><a href="{{ route('canjes.show', ['id'=>$canje->id]) }}" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Ver detalles del canje"><i class="material-icons">visibility</i></a></td>
+                                      </tr>  
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>

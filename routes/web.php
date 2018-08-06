@@ -137,6 +137,12 @@ Route::group(['prefix'=>'canjes'], function (){
         'as' => 'canjes.create'
     ]);
 
+    //Ruta para mostrar un canje
+    Route::get('show/{id}',[
+        'uses' => 'CanjeController@show',
+        'as' => 'canjes.show'
+    ]);
+
 });
 
 Route::group(['prefix'=>'clientes'], function(){

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -54,6 +55,7 @@ class User extends Authenticatable
         }
         return false;
       }
+
       public function tieneRol($name){
         return $this->roles()->where('name',$name)->count()==1;
       }

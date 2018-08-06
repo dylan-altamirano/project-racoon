@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CentroAcopio;
 use Auth;
-
+use App\User;
+use App\Rol;
 use Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,10 +19,10 @@ class CentroAcopioController extends Controller
      */
     public function index()
     {
-
         $centros = CentroAcopio::orderBy('nombre','desc')->paginate(6);    
-
-        return view('centros.index',['centros'=>$centros]);
+        $user=Auth::user();
+        $roles = Rol::all();
+        return view('centros.index',['centros'=>$centros,'user'=>$user,'roles'=>$roles]);
     }
 
     /**
@@ -31,7 +32,9 @@ class CentroAcopioController extends Controller
      */
     public function create()
     {
-        return view('centros.create');
+        $users = User::all();
+        $roles = Rol::all();
+        return view('centros.create',['users'=>$users,'roles'=>$roles]);
     }
 
     /**
@@ -56,12 +59,12 @@ class CentroAcopioController extends Controller
             'nombre' => $request->input('nombre'),
             'direccion_exacta' => $request->input('direccion_exacta'),
             'provincia' => $request->input('provincia'),
-            
+            'user_id' => $request->input('role'),
             'activo' => (!$request->has('activo')?0:1)
         ]);
 
-        $user=Auth::user();
-        $centros->user()->associate($user);
+        
+        $centros->user()->associate($request->input('role'));
 
         $centros->save();
         
@@ -88,10 +91,11 @@ class CentroAcopioController extends Controller
      */
     public function edit($id)
     {
-
+        $users = User::all();
+        $roles = Rol::all();
         $centros = CentroAcopio::find($id);
 
-        return view('centros.edit',['centros'=>$centros]);
+        return view('centros.edit',['centros'=>$centros,'users'=>$users,'roles'=>$roles]);
     }
 
     public function habilitar($id)
@@ -116,13 +120,13 @@ class CentroAcopioController extends Controller
             'nombre' => $request->input('nombre'),
             'direccion_exacta' => $request->input('direccion'),
             'provincia' => $request->input('provincia'),
-            
+            'user_id' => $request->input('role'),
             'activo' => (!$request->has('activo')?0:1)
         ]);
         $centros = CentroAcopio::find($request->input('id'));  
         
-        $user=Auth::user();
-        $centros->user()->associate($user);
+        $centros->user()->associate($request->input('role'));
+
 
         $centros->nombre = $request->input('nombre');
         $centros->direccion_exacta = $request->input('direccion_exacta');

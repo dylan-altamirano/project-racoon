@@ -45,6 +45,28 @@
 
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="role">Encargado</label>
+                                
+                            <select id="role" class="form-control" name="role">
+                             @foreach($users as $user)
+                                @foreach($roles as $rol)
+                                    @if($user->roles->contains($rol->id) && $rol->id == 2)
+                                        <option value="{{$user->id}}">{{$user->email}}</option>
+                                    @endif
+                                @endforeach
+                                @endforeach
+                            </select>
+                            @if ($errors->has('role'))
+                                <span class="invalid-feedback">
+                                     <strong>{{ $errors->first('role') }}</strong>
+                                </span>
+                            @endif
+                           
+                            </div>
+
+
                             <!--Activo-->
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="activo" name="activo" {{ ($centros->activo)?"checked":"" }}>

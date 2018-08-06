@@ -26,8 +26,40 @@ Route::group(['prefix'=>'auth'], function (){
         'uses'=>'ResetController@update',
         'as'=> 'auth.update'
     ]);
+  
+    Route::get('create',
+    [
+      'uses'=>'Auth\RegisterController@getAdminCreate',
+      'as'=>'auth.registeradmin'
+      
+    ]);
+    Route::post('create',
+    [
+      'uses'=>'Auth\RegisterController@createAdministrador',
+      'as'=>'auth.registeradmin'
+    ]);
 
+    //Ruta principal 
+    Route::get('',[
+        'uses' => 'Auth\RegisterController@index',
+        'as' => 'auth.index'
+    ]);
+
+    ///Edit del user
+    Route::get('edit',
+    [
+      'uses'=>'Auth\RegisterController@edit',
+      'as'=>'auth.edit'
+      
+    ]);
+    Route::post('update',
+    [
+      'uses'=>'Auth\RegisterController@update',
+      'as'=>'auth.update'
+    ]);
 });
+
+
 
 /***Rutas para centros de acopio***/
 Route::group(['prefix'=>'centros'], function (){
@@ -169,5 +201,7 @@ Route::group(['prefix'=>'cupones'], function (){
 Route::get('acerca', function () {
     return view('otros.acerca-de');
 })->name('otros.acerca');
+
+
 
 Auth::routes();

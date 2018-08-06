@@ -68,6 +68,7 @@
                 <a class="dropdown-item" href="{{ route('auth.edit',['id' => Auth::user()->id]) }}">
                     {{ __('Actualizar informacion') }}
                 </a>
+                <a href="{{ route('principal.dashboard') }}" class="dropdown-item">Mi Dashboard</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

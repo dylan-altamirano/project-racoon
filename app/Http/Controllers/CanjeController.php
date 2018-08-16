@@ -14,6 +14,8 @@ use Validator;
 use Response;
 use Illuminate\Support\Facades\Input;
 use App\http\Requests;
+use PDF;
+
 
 
 
@@ -268,4 +270,5 @@ class CanjeController extends Controller
 
         return redirect()->route('materiales.index');
     }
+
 }

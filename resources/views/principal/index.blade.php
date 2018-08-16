@@ -10,7 +10,7 @@
         <div class="container text-center">
             <h1>Bienvenido al sitio principal de la moneda ecológica de Costa Rica</h1>
 
-            <img src="storage/imagenes/reducir.jpeg" alt="boat" style="width:100%;height:555px;width:880px;">
+            <img src="{{ URL::to('pictures/reciclaje-ecolones.jpeg') }}" alt="boat" style="width:100%;height:555px;width:880px;">
             <p class="lead">En esta página encontraras todo lo que necesitas saber para comenzar a obtener ecomonedas. Es muy simple y, práctico.
                 Siéntase en libertad de explorar nuestras opciones antes de tomar una decisión.
             </p>

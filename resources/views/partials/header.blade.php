@@ -8,10 +8,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('centros.index') }}">Centros de Acopio</a>
+                {{--Centros de acopio--}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ route('centros.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                          Centros de Acopio
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @auth
+                        <a class="dropdown-item js-scroll-trigger" href="{{ route('centros.reporte') }}">Ver Gráfico</a>
+                    @endauth
+                    </div>
                 </li>
+                {{--Fin centros de acopio--}}
+
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
                 </li>
@@ -48,6 +58,18 @@
                     </li>
                     <!--FINAL DEL SHOPPING CART-->
                 @endcan
+
+                @can('cliente')
+                <!--SHOPPING CART-->
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{ route('billeteravirtual.create') }}">
+                        <i class="material-icons" aria-hidden="true">shopping_cart</i> Cupones a canjear 
+                        <span class="badge badge-light">{{ Session::has('cart_cupones')?Session::get('cart_cupones')->cantidadTotal:'' }}</span>
+                    </a>
+                </li>
+                <!--FINAL DEL SHOPPING CART-->
+                @endcan    
+
             </ul>
 
 

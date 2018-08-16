@@ -9,6 +9,11 @@ use App\User;
 use App\Rol;
 use Gate;
 use Illuminate\Support\Facades\Storage;
+use App\Charts\Graficos;
+use DB;
+use Validator;
+use Response;
+use App\http\Requests;
 
 class CentroAcopioController extends Controller
 {
@@ -161,5 +166,37 @@ class CentroAcopioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getFiltroGrafico()
+    {
+
+        return view('centros.reporte');
+    }
+
+       //Reporte Gráfico de total de ecomonedas por centro de acopio
+    public function grafico(Request $request)
+    {
+
+        $this->validate($request, [
+            'fecha_ini' => 'required',
+            'fecha_fin' => 'required'
+        ]);
+
+        $chart = new Graficos();
+
+        $titulo = 'Cantidad total de ecomonedas';
+        $materiales = DB::table('materiales')->join('canje_detalle', 'materiales.id', '=', 'canje_detalle.material_id')->join('canjes', 'canje_detalle.canje_id', '=', 'canjes.id')->join('centro_acopios', 'canjes.centro_acopio_id', '=', 'centro_acopios.id')->select(DB::raw("sum(materiales.precio_unitario) as Total"), DB::raw("centro_acopios.nombre as Centro"))->whereBetween('fecha', [$request->input('fecha_ini'), $request->input('fecha_fin')])->groupby(DB::raw("centro_acopios.nombre"))->get();
+
+        $chart->labels($materiales->pluck('Centro'));
+
+        $dataset = $chart->dataset($titulo, 'bar', $materiales->pluck('Total'));
+
+        $dataset->backgroundColor(['#a9cce3', ' #a9dfbf', '#fad7a0', '#c39bd3', '#f9e79f', '#a3e4d7', '#fadbd8', '#e59866']);
+        $dataset->color(['#2980b9', '#52be80', '#f0b27a', '#7d3c98', '#f4d03f', '#48c9b0', '#f1948a', '#d35400']);
+
+
+        return view('centros.grafico', ['chart' => $chart]);
+
     }
 }

@@ -20,6 +20,7 @@
             </div>
        @endcan
         
+       @can('cliente')
             <div class="col-md-12" style="margin-bottom:3%">
                 <div class="card">
                     <div class="card-body">
@@ -29,6 +30,15 @@
                 </div>
             </div>
 
+            <div class="col-md-12" style="margin-bottom:3%">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="float-left">Historial Cupones</h2>
+                        <a href="{{ route('billeteravirtual.showAll') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">home</i></a>
+                    </div>
+                </div>
+            </div>
+       @endcan     
     </div>
 </section>
 

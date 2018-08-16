@@ -33,32 +33,48 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title float-left">Historial de Canjes</h5>
-                    <a href="{{ route('billeteravirtual.create') }}" class="btn btn-success float-right" data-toggle="tooltip" data-placement="top"
+                    <a href="{{ route('cupones.index') }}" class="btn btn-success float-right" data-toggle="tooltip" data-placement="top"
                             title="Canjear un cupón"><i class="material-icons">shop</i></a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-borderless table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nº</th>
-                                    <th scope="col">Centro Acopio</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($canjes as $canje)
-                                <tr>
-                                    <th scope="row">{{ $canje->id }}</th>
-                                    <td>{{ $canje->centrosacopio->nombre}}</td>
-                                    <td>{{ $canje->fecha }}</td>
-                                    <td><a href="{{ route('canjes.show', ['id'=>$canje->id]) }}" class="btn btn-success" data-toggle="tooltip"
-                                            data-placement="right" title="Ver detalles del canje"><i class="material-icons">visibility</i></a></td>
-                                </tr>
-                                @endforeach
 
-                            </tbody>
-                        </table>
+                        @if(count($canjes) > 0)
+
+                            <!--Tabla canjes-->
+                            <table class="table table-borderless table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nº</th>
+                                        <th scope="col">Centro Acopio</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($canjes as $canje)
+                                    <tr>
+                                        <th scope="row">{{ $canje->id }}</th>
+                                        <td>{{ $canje->centrosacopio->nombre}}</td>
+                                        <td>{{ $canje->fecha }}</td>
+                                        <td><a href="{{ route('canjes.show', ['id'=>$canje->id]) }}" class="btn btn-success" data-toggle="tooltip" data-placement="right"
+                                                title="Ver detalles del canje"><i class="material-icons">visibility</i></a></td>
+                                    </tr>
+                                    @endforeach
+                            
+                                </tbody>
+                            </table>
+                            <!--Final tabla canjes-->
+
+                        @else
+
+                            <div class="alert alert-info">
+                            <p>No hay canjes registrados para <strong>{{ $cliente->name }}</strong></p>
+                            </div>
+
+                        @endif
+                         
+                        
+
                     </div>
                 </div>
             </div>

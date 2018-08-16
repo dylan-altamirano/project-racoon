@@ -92,6 +92,12 @@ Route::group(['prefix'=>'centros'], function (){
         'middleware' => 'can:admin-all, id'
     ]);
 
+
+    Route::get('grafico', [
+        'uses' => 'CentroAcopioController@getFiltroGrafico',
+        'as' => 'centros.reporte',
+        'middleware' => 'can:admin-all'
+    ]);
    
 
     //POST REQUESTS
@@ -104,6 +110,12 @@ Route::group(['prefix'=>'centros'], function (){
     Route::post('update',[
         'uses'=>'CentroAcopioController@update',
         'as'=> 'centros.update',
+        'middleware' => 'can:admin-all'
+    ]);
+
+    Route::post('showGrafico', [
+        'uses' => 'CentroAcopioController@grafico',
+        'as' => 'centros.grafico',
         'middleware' => 'can:admin-all'
     ]);
 
@@ -177,6 +189,8 @@ Route::group(['prefix'=>'canjes','middleware' => 'auth'], function (){
         'as' => 'canjes.create',
         'middleware' => 'can:admin-center'
     ]);
+
+
     
     //Ruta para guardar el canje
     Route::post('create', [
@@ -263,6 +277,31 @@ Route::group(['prefix' => 'billeteravirtual'], function () {
         'uses' => 'CanjeCuponController@create',
         'as' => 'billeteravirtual.create',
         'middleware'=>'can:cliente'
+    ]);
+
+    Route::get('agregar-cupon/{id}',[
+        'uses' => 'CanjeCuponController@agregarCupon',
+        'as' => 'billeteravirtual.agregarCupon',
+        'middleware' => 'can:cliente'
+    ]);
+
+    Route::get('show-all', [
+        'uses' => 'CanjeCuponController@mostrarCuponesCanjeados',
+        'as' => 'billeteravirtual.showAll',
+        'middleware' => 'can:cliente'
+    ]);
+
+    Route::get('downloadPDF/{id}/{cant}', [
+        'uses' => 'CanjeCuponController@descargarPDF',
+        'as' => 'billeteravirtual.reportePDF',
+        'middleware'=>'can:cliente'
+    ]);
+
+    //Rutas POST
+    Route::post('create', [
+        'uses' => 'CanjeCuponController@store',
+        'as' => 'billeteravirtual.create',
+        'middleware' => 'can:cliente'
     ]);
 
 });

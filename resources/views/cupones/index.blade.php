@@ -29,8 +29,10 @@
                     @foreach($cupones as $cupon)
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <div class="card-title">
-                                <h3>{{ $cupon->nombre }}</h3>
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h3>{{ $cupon->nombre }}</h3>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">{{ $cupon->descripcion }}
@@ -43,12 +45,23 @@
                                        <a href="{{ route('cupones.edit',['id'=> $cupon->id]) }}" class="btn btn-outline-info">Editar</a>
                                     </div>
                                     @endcan
+                                    @can('cliente')
+                                        <div class="btn-group">
+                                            <a href="{{ route('billeteravirtual.agregarCupon',['id'=>$cupon->id]) }}" class="btn btn-sm btn-outline-secondary">Añadir al canje</a>
+                                        </div>
+                                    @endcan
                                     
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">
+                                @can('admin-all')    
+                                    
                                     <small class="text-muted">Actualizado a las: {{ date_format($cupon->updated_at, 'g:ia \o\n l jS F Y') }}</small>
-                                </div>
+                                @endcan
+
+                                <p class="text-muted">Valor en Ecomonedas: <span class="badge badge-success">{{ "₡ ".$cupon->cant_ecomonedas }}</span> </p>
+
+                                </div>        
                             </div>
                         </div>
                     @endforeach

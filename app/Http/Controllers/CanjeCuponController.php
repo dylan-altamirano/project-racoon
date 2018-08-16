@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Canje;
+use App\Cupon;
+use Session;
+use App\CartCupones;
+use App\CanjeCupon;
+
 
 class CanjeCuponController extends Controller
 {
@@ -42,7 +47,20 @@ class CanjeCuponController extends Controller
      */
     public function create()
     {
-        return view('billeteravirtual.create');
+
+        //Obtiene el id del usuario logueado en el sistema
+        $user_id = Auth::id();
+
+    
+        //Obtiene el carro con los materiales previamente guardados
+        $cart_ant = Session::has('cart_cupones') ? Session::get('cart_cupones') : null;
+
+        $cart = new CartCupones($cart_ant);
+
+        $cliente = User::find($user_id);
+
+        return view('billeteravirtual.create', ['cliente' => $cliente, 'cupones' => $cart->items, 'cantidadTotal' => $cart->cantidadTotal, 'ecomonedasTotal' => $cart->ecomonedasTotal]);
+
     }
 
     /**
@@ -53,7 +71,131 @@ class CanjeCuponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'fecha' => 'required',
+            'cliente_id' => 'required'
+        ]);
+        
+        $cliente = User::find($request->input('cliente_id'));
+
+         //Obtiene el carro con los cupones previamente guardados
+        $cart_ant = Session::has('cart_cupones') ? Session::get('cart_cupones') : null;
+
+        $cart = new CartCupones($cart_ant);
+
+        //Crea un arreglo con los items del carro de compras
+        $cupones_items = $cart->items;
+
+         //valida que el cliente posea suficiente balance para
+         //canjear los cupones. De lo contrario, no se puede canjear.           
+        if($cliente->balance_ecomonedas >= $cart->ecomonedasTotal){
+
+              //Sacar la colección solo de cupones
+            $cupones_collection = $this->obtieneArregloCupones($cupones_items);
+
+        //Convertir la coleccion a un arreglo
+            $cupones = $cupones_collection->all();
+
+            $cupones_id = array_pluck($cupones, 'id');
+
+        //Obtiene las cantidades
+        //$cantidades = $this->obtieneArregloCantidades($materiales_items)->all();
+            $cantidades = array_pluck($cupones_items, 'cant');
+
+         //Crea el objeto Canje 
+            $canjeCupon = new CanjeCupon([
+                'fecha' => $request->input('fecha'),
+                'activo' => true
+            ]);
+
+        //Asocia el cliente con el canje
+            $canjeCupon->usuario()->associate($cliente);
+
+            $canjeCupon->save();
+
+            $combined_data = array_combine($cupones_id, $this->obtenerPivotData($cantidades));
+
+         //Asocia el arreglo de cupones al canje
+            $canjeCupon->cupones()->attach($combined_data === null ? [] : $combined_data);
+
+            //Actualiza el balance de ecomonedas del cliente restando la cantidad
+            //del total del canje al mismo.
+            $cliente->balance_ecomonedas -= $cart->ecomonedasTotal;
+            $cliente->save();    
+        
+            $this->limpiarShoppingCart($request);
+
+            return redirect()->route('billeteravirtual.index')->with('info', 'Los cupones han sido canjeados satisfactoriamente');
+
+        }else{
+
+            $this->limpiarShoppingCart($request);
+
+            return redirect()->route('billeteravirtual.index')->with('info', 'Oops! Parece ser que no hay suficiente ecomonedas para efectuar el canje. Por favor, intentelo más tarde.');
+
+        }
+
+    }
+
+    public function obtieneArregloCupones($arreglo)
+    {
+
+        $cupones = collect([]);
+
+        foreach ($arreglo as $item) {
+
+            $cupon = new Cupon;
+
+            $cupon = $item['item'];
+
+            $cupones->push($cupon);
+        }
+
+        return $cupones;
+    }
+
+    public function limpiarShoppingCart(Request $request)
+    {
+        //Establecemos el carrito en cero otra vez
+        $cart = new CartCupones(null);
+
+        $request->session()->put('cart_cupones', $cart);
+    }
+
+    public function obtenerPivotData($arreglo)
+    {
+
+        $pivotData = array(['cantidad' => $arreglo[0]]);
+
+        for ($i = 1; $i < count($arreglo); $i++) {
+            array_push($pivotData, ['cantidad' => $arreglo[$i]]);
+        }
+
+        return $pivotData;
+    }
+
+    public function mostrarCuponesCanjeados(){
+
+        $id = Auth::id();
+
+        $canjecupones = CanjeCupon::where('user_id', $id)->get();
+
+
+        $cupones = collect([]);
+        //$cantidades = collect([]);
+
+        foreach ($canjecupones as $canjecupon) {
+
+            foreach($canjecupon->cupones as $cupon){
+
+                $cupones->push($cupon);
+               //$cantidades->push([$cupon->id=>$cupon->pivot->cantidad]);
+            }
+
+        }
+
+        return view('billeteravirtual.showAll',['cupones'=> $cupones->all(),'cliente'=>Auth::user()]);
     }
 
     /**
@@ -100,4 +242,33 @@ class CanjeCuponController extends Controller
     {
         //
     }
+
+    public function agregarCupon(Request $request, $id)
+    {
+
+        $cupon = Cupon::find($id);
+
+        $cart_ant = Session::has('cart_cupones') ? Session::get('cart_cupones') : null;
+
+        $cart = new CartCupones($cart_ant);
+
+        $cart->agregar($cupon, $cupon->id);
+
+        $request->session()->put('cart_cupones', $cart);
+
+        return redirect()->route('cupones.index');
+    }
+
+    //Metodo PDF
+    public function descargarPDF($id, $cant)
+    {
+        $cupon= Cupon::find($id);
+
+        $pdf = PDF::loadView('billeteravirtual.reportePDF', ['cupon'=> $cupon,'cant'=>$cant]);
+
+        return $pdf->download('Cupon' . $id . '.pdf');
+
+    }
+
+
 }

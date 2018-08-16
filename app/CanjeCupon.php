@@ -12,7 +12,7 @@ class CanjeCupon extends Model
     protected $fillable = ['fecha', 'activo', 'user_id'];
 
      public function usuario(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function cupones(){

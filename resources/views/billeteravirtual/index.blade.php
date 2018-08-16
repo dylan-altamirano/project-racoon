@@ -17,8 +17,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-body">
-                        <h3>Balance Actual Ecomonedas <span class="badge badge-success"><strong>₡ {{ $cliente->balance_ecomonedas }}</strong></span></h3>
+                    <div class="card-header"><p class="card-title"><h5>Mis Finanzas</h5></p></div>
+                    <div class="card-body">  
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center"><h3>Balance Actual Ecomonedas</h3><h3> <span class="badge badge-success badge-pill"><strong>₡ {{ $cliente->balance_ecomonedas }}</strong></span></h3></li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center"><h4>Monedas Canjeadas </h4> <h4><span class="badge badge-success badge-pill"><strong>₡ {{ $monedasCanjeadasTotal }}</strong></span></h4></li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center"><h4>Monedas Generadas </h4><h4><span class="badge badge-success badge-pill"><strong>₡ {{ $monedasGeneradasTotal }}</strong></span></h4></li>
+                        </ul>
                     </div>            
                 </div>
             </div>

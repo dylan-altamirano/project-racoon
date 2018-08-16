@@ -129,42 +129,57 @@ Route::get('dashboard',[
 ]);
 
 /***Rutas para materiales***/
-Route::group(['prefix'=>'materiales', 'middleware'=> 'auth'], function (){
+Route::group(['prefix'=>'materiales'], function (){
 
-    //Ruta principal 
-    Route::get('',[
+      //Ruta principal 
+    Route::get('', [
         'uses' => 'MaterialController@index',
         'as' => 'materiales.index'
     ]);
 
+    Route::group(['middleware' => 'auth'], function () {
+
+  
+
     //Ruta para crear nuevo
-    Route::get('create',[
-        'uses' => 'MaterialController@create',
-        'as' => 'materiales.create',
-        'middleware' => 'can:admin-all'
-    ]);
+        Route::get('create', [
+            'uses' => 'MaterialController@create',
+            'as' => 'materiales.create',
+            'middleware' => 'can:admin-all'
+        ]);
 
     //Ruta para actualizar 
-    Route::get('edit/{id}',[
-        'uses' => 'MaterialController@edit',
-        'as'=> 'materiales.edit',
-        'middleware' => 'can:admin-all,id'
-    ]);
+        Route::get('edit/{id}', [
+            'uses' => 'MaterialController@edit',
+            'as' => 'materiales.edit',
+            'middleware' => 'can:admin-all,id'
+        ]);
 
 
     //POST REQUESTS
-    Route::post('create',[
-        'uses' => 'MaterialController@store',
-        'as'=> 'materiales.create',
-        'middleware' => 'can:admin-all'
-    ]);
+        Route::post('create', [
+            'uses' => 'MaterialController@store',
+            'as' => 'materiales.create',
+            'middleware' => 'can:admin-all'
+        ]);
 
-    Route::post('update',[
-        'uses'=>'MaterialController@update',
-        'as'=> 'materiales.update',
-        'middleware' => 'can:admin-all'
-    ]);
+        Route::post('update', [
+            'uses' => 'MaterialController@update',
+            'as' => 'materiales.update',
+            'middleware' => 'can:admin-all'
+        ]);
+
+        Route::post('delete/{id}',[
+            'uses'=> 'MaterialController@destroy',
+            'as' => 'materiales.delete',
+            'middleware'=>'can:admin-all'
+        ]);
+    });    
+
+
 });
+
+
 
 /*Rutas para Canjes */
 Route::group(['prefix'=>'canjes','middleware' => 'auth'], function (){
@@ -203,7 +218,6 @@ Route::group(['prefix'=>'canjes','middleware' => 'auth'], function (){
     Route::get('show/{id}',[
         'uses' => 'CanjeController@show',
         'as' => 'canjes.show',
-        'middleware' => 'can:admin-center,id'
     ]);
 
 });

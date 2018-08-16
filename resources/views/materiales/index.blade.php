@@ -58,6 +58,12 @@
                                             <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
                                     
                                         </div>
+                                        <div class="btn-group">
+                                          <form action="{{ route('materiales.delete',['id'=> $material->id]) }}" method="post">  
+                                            @csrf 
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Eliminar</button>
+                                        </form>
+                                        </div>
                                     @endcan
                                     @can('admin-center')
                                         <div class="btn-group">    

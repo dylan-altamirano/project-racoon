@@ -36,7 +36,10 @@ class CanjeCuponController extends Controller
 
         $canjes = Canje::where('user_id', $cliente->id)->get();
 
-        return view('billeteravirtual.index',['cliente'=>$cliente,'canjes'=>$canjes]);
+        $total_monedas_canjeadas = $this->totalEcomonedasCanjeadas();
+        $total_monedas_generadas = $this->totalMonedasGeneradas();
+
+        return view('billeteravirtual.index',['cliente'=>$cliente,'canjes'=>$canjes,'monedasCanjeadasTotal' => $total_monedas_canjeadas,'monedasGeneradasTotal'=>$total_monedas_generadas]);
 
     }
 
@@ -268,6 +271,29 @@ class CanjeCuponController extends Controller
 
         return $pdf->download('Cupon' . $id . '.pdf');
 
+    }
+
+    public function totalEcomonedasCanjeadas(){
+
+        $user = Auth::user();
+
+        $canjecupones = CanjeCupon::where('user_id', $user->id)->get();
+
+        $suma_total = 0;
+
+        foreach($canjecupones as $canjecupon){
+            foreach($canjecupon->cupones as $cupon){
+                $suma_total += $cupon->cant_ecomonedas;
+            }
+        }
+
+        return $suma_total;
+
+    }
+
+    public function totalMonedasGeneradas(){
+
+        return $this->totalEcomonedasCanjeadas() + Auth::user()->balance_ecomonedas;
     }
 
 

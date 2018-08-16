@@ -10,11 +10,14 @@
             <ul class="navbar-nav ml-auto">
                 {{--Centros de acopio--}}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ route('centros.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                           Centros de Acopio
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item js-scroll-trigger" href="{{ route('centros.index') }}">Ver Centros</a>
+
                     @auth
                         <a class="dropdown-item js-scroll-trigger" href="{{ route('centros.reporte') }}">Ver Gráfico</a>
                     @endauth

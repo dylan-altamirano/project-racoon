@@ -28,7 +28,9 @@
                 @if($centros != null)
                   
                     @foreach($centros as $centro)
-                    @can('cliente')
+
+                   {{-- @can('cliente')
+
                     @if($centro->activo == 1)
                    
                     <div class="col-md-4">
@@ -64,14 +66,17 @@
                     @endif
                     @endcan
 
-                     @can('admin-center')
+                    --}}
+
                     @if($centro->activo == 1)
                    
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <div class="card-title">
-                                <h2>{{ $centro->provincia }}</h2>
-                                
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>{{ $centro->provincia }}</h2>
+                                    
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                 <h3>{{ $centro->nombre }}</h3>
@@ -92,27 +97,27 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    <small class="text-muted">Actualizado a las: {{ date_format($centro->updated_at, 'g:ia \o\n l jS F Y') }}</small>
+                                <small class="text-muted">Contacto del Centro: {{ $centro->user->name}}</small>
                                 </div>
                             </div>
                         </div>
-                       
-                    @endif
-                    @endcan
+                    @endif   
                     
                     @can('admin-all')
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <div class="card-title">
-                                <h2>{{ $centro->provincia }}</h2>
-                                
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>{{ $centro->provincia }}</h2>
+                                    
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                 <h3>{{ $centro->nombre }}</h3>
                                     <p class="card-text">{{ $centro->direccion_exacta }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                    @can('admin-all')
+                                  
                                     <div class="btn-group">
                                        <a href="{{ route('centros.edit',['id'=> $centro->id]) }}" class="btn btn-outline-info">Editar</a>
                                     </div>
@@ -121,7 +126,7 @@
                                     <a href="{{ route('centros.habilitar',['id'=> $centro->id]) }}" class="btn btn-outline-danger">{{ ($centro->activo)?"Deshabilitar":"Habilitar" }}</a>
 
                                      </div>
-                                     @endcan
+                             
                                     
                                     </div>
                                 </div>

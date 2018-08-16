@@ -190,6 +190,22 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        if ($id != null) {
+
+            $material = Material::find($id);
+
+            $nombre_material = $material->nombre;
+
+            $material->delete();
+
+            return redirect()->route('materiales.index')->with('info', 'El material '. $nombre_material .' ha sido eliminado con éxito');
+
+
+        }else{
+            return redirect()->route('materiales.index')->with('info', 'El material ' . $nombre_material . ' no ha sido eliminado con éxito. Verifique la información de solicitud.');
+        }
+
+      
     }
 }

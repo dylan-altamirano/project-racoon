@@ -16,11 +16,11 @@
     <section id="centros">
         <div class="album py-5 bg-light">
        <!-- <div class="container text-center"><img src="storage/imagenes/centros.PNG" alt="boat" style="width:100%;height:349px;width:500px;"></div>-->
-        
+        @can('admin-all')
             <div class="container" style="margin-bottom:5px">
                 <a href="{{ route('auth.registeradmin') }}" class="btn btn-primary">Crear nuevo</a>
             </div>
-        
+        @endcan
             <div class="container">
         
                 <div class="row">

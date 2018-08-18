@@ -26,7 +26,13 @@ Route::group(['prefix'=>'auth'], function (){
 
     Route::post('update',[
         'uses'=>'ResetController@update',
-        'as'=> 'auth.update'
+        'as'=> 'auth.password'
+    ]);
+
+    Route::post('update',
+    [
+      'uses'=>'ResetController@update',
+      'as'=>'auth.update'
     ]);
   
     Route::get('create',
@@ -46,19 +52,7 @@ Route::group(['prefix'=>'auth'], function (){
         'uses' => 'Auth\RegisterController@index',
         'as' => 'auth.index'
     ]);
-
-    ///Edit del user
-    Route::get('edit',
-    [
-      'uses'=>'Auth\RegisterController@edit',
-      'as'=>'auth.edit'
-      
-    ]);
-    Route::post('update',
-    [
-      'uses'=>'Auth\RegisterController@update',
-      'as'=>'auth.update'
-    ]);
+   
 });
 
 

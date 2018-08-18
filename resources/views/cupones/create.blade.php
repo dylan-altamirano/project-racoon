@@ -39,6 +39,15 @@
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
 
+                             <div class="form-group">
+                                <label>Imagen</label>
+                                <input type="file"
+                                name="imagenCupon"
+                                accept="image/*"
+                                class="form-control-file" />
+                            </div>
+                            
+
                             @csrf
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         <a href="{{ route('cupones.index') }}" class="btn btn-primary"> Cancelar</a>

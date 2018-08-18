@@ -39,7 +39,13 @@
                                 <input type="checkbox" class="form-check-input" id="activo" name="activo" {{ ($cupones->activo)?"checked":"" }} >
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
-
+                            <div class="form-group">
+                                <label>Imagen</label>
+                                <input type="file"
+                                name="imagenCupon"
+                                accept="image/*"
+                                class="form-control-file" />
+                            </div>
                             @csrf
 
                             <input type="hidden" id="id" name="id" value="{{ $cupones->id }}">

@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -35,36 +35,5 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-    }
-
-    public function edit($id)
-    {
-
-        $user = User::find($id);
-
-        return view('password.reset',['users'=>$user]);
-    }
-
-    public function update(Request $request)
-    {
-        //Validacion
-        $user = new User([
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        
-          //  'name', 'email', 'password', 'direccion','telefono','activo','balance_ecomonedas'
-        ]);
-        $user = Auth::user()::find($request->input('id'));  
-        
-       
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
-      
-       
-
-        $user->save();
-
-        return redirect()->route('principal.index')->with('info','La contrasena para el usuario'.$request->input('nombre').' has sido actualizada con éxito.');
-
     }
 }

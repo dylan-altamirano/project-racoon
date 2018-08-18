@@ -20,7 +20,7 @@ class ResetController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|string|email|max:255|unique:users',
+           // 'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'password-old' => 'required|string',
         ]);
@@ -28,38 +28,30 @@ class ResetController extends Controller
 
     public function update(Request $request)
     {
-        
-        
-
         $user2 = User::find($request->input('id'));
      
         if(Hash::check($request->input('password-old'), $user2->password)){
 
             
         //Validacion
-         $user = new User([
-        'email' => $request->input('email'),
-        'password' => $request->input('password'),
-
-         //  'name', 'email', 'password', 'direccion','telefono','activo','balance_ecomonedas'
-        ]);
+        // validator($request);
 
 
             $user = Auth::user();
         
             $password2 = bcrypt($request->input('password'));
-            $user->email = $request->input('email');
+           // $user->email = $request->input('email');
             $user->password = $password2;
 
             $user->save();
         }
         else{
-            
+            return redirect()->route('auth.resetpassword',['id' => Auth::user()->id])->with('info', 'La contraseña no cohincide');
         
         }
         
 
-        return redirect()->route('principal.index');
+        return redirect()->route('auth.resetpassword',['id' => Auth::user()->id])->with('info', 'Contraseña cambiada con exito');
 
     }
 }

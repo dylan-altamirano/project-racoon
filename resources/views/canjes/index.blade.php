@@ -43,6 +43,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="card-footer">
+                            {{ $canjes->links() }}
+                        </div>
                     </div>
             </div>
         </div>

@@ -46,17 +46,20 @@ class Cart
                 $item_almacenado = $this->items[$id];
 
                 if($item_almacenado['cant']<=1){
-                    $this->eliminarItem($item, $id);
 
-                    exit;
+                    $this->eliminarItem($item, $id);
 
                 }else{
                     $item_almacenado['cant']--;
+
+                    $item_almacenado['precio'] -= $item->precio_unitario;
+
+                    $this->items[$id] = $item_almacenado;
+                    $this->cantidadTotal--;
+                    $this->precioTotal -= $item_almacenado['precio'];
                 }
 
-                $this->items[$id] = $item_almacenado;
-                $this->cantidadTotal--;
-                $this->precioTotal -= $item->precio_unitario;                
+                               
             }
         }
     }
@@ -69,8 +72,14 @@ class Cart
         if ($this->items) {
 
             if (array_key_exists($id, $this->items)) {
+
+                $item_almacenado = $this->items[$id];
                 
                 unset($this->items[$id]);
+
+                $this->cantidadTotal--;
+                $this->precioTotal -= $item_almacenado['precio'];
+
             }
         }
 

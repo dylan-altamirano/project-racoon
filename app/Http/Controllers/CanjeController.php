@@ -18,7 +18,7 @@ use PDF;
 use Illuminate\Mail\Mailer;
 use App\Mail\OrdenNotificacion;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\DB;
 
 
 

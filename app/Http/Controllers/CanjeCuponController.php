@@ -262,6 +262,40 @@ class CanjeCuponController extends Controller
         return redirect()->route('cupones.index');
     }
 
+    public function reducirEnUno(Request $request, $id)
+    {
+
+        $cupon = Cupon::find($id);
+
+        $cart_ant = Session::has('cart_cupones') ? Session::get('cart_cupones') : null;
+
+        $cart = new CartCupones($cart_ant);
+
+        $cart->reducirCantidad($cupon, $cupon->id);
+
+        $request->session()->put('cart_cupones', $cart);
+
+        return redirect()->route('billeteravirtual.create');
+
+    }
+
+    public function eliminarElemento(Request $request, $id)
+    {
+
+        $cupon = Cupon::find($id);
+
+        $cart_ant = Session::has('cart_cupones') ? Session::get('cart_cupones') : null;
+
+        $cart = new CartCupones($cart_ant);
+
+        $cart->eliminarItem($cupon, $cupon->id);
+
+        $request->session()->put('cart_cupones', $cart);
+
+        return redirect()->route('billeteravirtual.create');
+    }
+
+
     //Metodo PDF
     public function descargarPDF($id, $cant)
     {

@@ -10,6 +10,7 @@ use App\http\Requests;
 use Session;
 use App\User;
 
+
 class ClienteController extends Controller
 {
     public function getCliente(Request $request)

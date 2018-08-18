@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">
-                                <small class="text-muted">Contacto del Centro: {{ $centro->user_id}}</small>
+                                <small class="text-muted">Contacto del Centro: {{ $centro->user->name}}</small>
                                 </div>
                             </div>
                         </div>

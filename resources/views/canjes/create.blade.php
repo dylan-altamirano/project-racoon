@@ -83,8 +83,8 @@
                                                           Acción
                                                         </button>
                                                     <div class="dropdown-menu" aria-labelledby="btnGroupDropAcciones">
-                                                        <a class="dropdown-item" href="{{ route('canjes.reducirCant',['id'=>$item['item']['id'] ]) }}">-1</a>
-                                                        <a class="dropdown-item" href="{{ route('canjes.eliminarMaterial',['id'=>$item['item']['id']]) }}">Eliminar</a>   
+                                                        <a class="dropdown-item" href="{{ route('canjes.reducirCant',['id'=>$item['item']['id'] ]) }}">Eliminar uno</a>
+                                                        <a class="dropdown-item" href="{{ route('canjes.eliminarMaterial',['id'=>$item['item']['id']]) }}">Eliminar todos</a>   
                                                     </div>
                                                 </div>
                                             </td>

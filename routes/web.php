@@ -307,6 +307,20 @@ Route::group(['prefix' => 'billeteravirtual'], function () {
         'middleware' => 'can:cliente'
     ]);
 
+     //Ruta para reducir -1 la cant del elemento en el shopping cart
+    Route::get('reducir-cant/{id}', [
+        'uses' => 'CanjeCuponController@reducirEnUno',
+        'as' => 'billeteravirtual.reducirCant',
+        'middleware' => 'can:cliente,id'
+    ]);
+
+     //Ruta para eliminar un elemento del shopping cart
+    Route::get('eliminar-cupon/{id}', [
+        'uses' => 'CanjeCuponController@eliminarElemento',
+        'as' => 'billeteravirtual.eliminarCupon',
+        'middleware' => 'can:cliente,id'
+    ]);
+
     Route::get('show-all', [
         'uses' => 'CanjeCuponController@mostrarCuponesCanjeados',
         'as' => 'billeteravirtual.showAll',

@@ -15,7 +15,9 @@ use Response;
 use Illuminate\Support\Facades\Input;
 use App\http\Requests;
 use PDF;
-
+use Illuminate\Mail\Mailer;
+use App\Mail\OrdenNotificacion;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -40,7 +42,10 @@ class CanjeController extends Controller
      */
     public function index()
     {
-        $canjes = Canje::orderBy('fecha','desc')->paginate(5);
+
+        $centro_acopio = CentroAcopio::where('user_id', Auth::user()->id)->first();
+
+        $canjes = Canje::where('centro_acopio_id', $centro_acopio->id)->paginate(5);
 
         $centros_acopio = CentroAcopio::all();
 
@@ -135,12 +140,16 @@ class CanjeController extends Controller
         $canje->materiales()->attach($combined_data === null ? [] : $combined_data);
         
         //Actualiza el balance de ecomonedas del cliente
-        $cliente->balance_ecomonedas = $cart->precioTotal;
+        $cliente->balance_ecomonedas += $cart->precioTotal;
         $cliente->save();    
         
         $this->limpiarShoppingCart($request);    
 
-        return redirect()->route('canjes.index')->with('info','El canje has sido creado con exito');
+        //Enviar correo
+
+        Mail::to($cliente->email)->send(new OrdenNotificacion($canje, $cliente, $centro_acopio, $cart->items, $cart->cantidadTotal, $cart->precioTotal));
+
+        return redirect()->route('canjes.index')->with('info','El canje has sido creado con exito. Se le ha enviado la notificación al correo electrónico.');
     }
 
     public function obtenerPivotData($arreglo){

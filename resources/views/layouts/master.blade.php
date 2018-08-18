@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ecolones - @yield('titulo')</title>
+    <title>Ecodivisa CR - @yield('titulo')</title>
 
     <!-- Bootstrap core CSS -->
 <link href="{{ URL::to('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">

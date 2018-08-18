@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h2>Ecolones</h2>
+                    <h2>Ecodivisa CR</h2>
                     <p class="lead">Nuestro propósito</p>
                     <ul>
                         <li>Impulsar una economía responsable y solidaria en Costa Rica, de participación, alianzas y responsabilidad compartida, 
@@ -29,7 +29,7 @@
                     </ul>
                     <p class="lead">Nuestro apoyo</p>
                     <ul>
-                        <li>¿Por qué se creó la ecomoneda ecolones?
+                        <li>¿Por qué se creó la ecodivisa?
                         Fue creado como una herramienta para apoyar el cumplimiento de la Ley 8839 para  
                         la gestión integral de residuos. Ésta ley tiene por objeto regular la gestión integral de residuos y
                          el uso eficiente de los recursos, mediante la planificación y ejecución de acciones regulatorias, operativas, 
@@ -53,7 +53,7 @@
                     <p class="lead">
                         Puedes escribirnos, llamarnos o incluso venir a nuestras instalaciones ubicadas en centro Eurocenter en Barrial de Heredia,
                         te despejamos todas tus dudas. <br><br> Tel. 2440-33-07 | 2442-76-88 <br> Correo
-                        Electrónico: soporte@ecomonedacr.com
+                        Electrónico: support@ecodivisa.online
                     </p>
                 </div>
             </div>

@@ -74,7 +74,13 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    <small class="text-muted">Actualizado a las: {{ date_format($material->updated_at, 'g:ia \o\n l jS F Y') }}</small>
+                                    <div class="row">
+                                        <p class="text-muted">Valor en Ecomonedas: <span class="badge badge-success">{{ "₡ ".$material->precio_unitario }}</span> </p>
+                                    </div>
+                                    <div class="row">
+                                            <small class="text-muted">Actualizado a las: {{ date_format($material->updated_at, 'g:ia \o\n l jS F Y') }}</small>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

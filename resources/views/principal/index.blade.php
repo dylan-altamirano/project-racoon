@@ -48,7 +48,7 @@
                     <p class="lead">
                         Puedes escribirnos, llamarnos o incluso venir a nuestras instalaciones ubicadas en centro Eurocenter en Barrial de Heredia,
                         te despejamos todas tus dudas. <br><br> Tel. 2440-33-07 | 2442-76-88 <br> Correo
-                        Electrónico: soporte@ecomonedacr.com
+                        Electrónico: support@ecodivisa.online
                     </p>
                 </div>
             </div>

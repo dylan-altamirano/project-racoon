@@ -32,13 +32,11 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('cupones.index') }}">Cupones</a>
                 </li>
-                @endcan
-                
-                @can('admin-all')
+            
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('auth.registeradmin') }}">Crear usuarios</a>
-                </li>
-                
+               </li>
+
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('auth.index') }}">Lista clientes</a>
                 </li>
@@ -92,9 +90,7 @@
                 <a class="dropdown-item" href="{{ route('auth.resetpassword',['id' => Auth::user()->id]) }}">
                     {{ __('Cambiar contraseña') }}
                 </a>
-                <a class="dropdown-item" href="{{ route('auth.edit',['id' => Auth::user()->id]) }}">
-                    {{ __('Actualizar informacion') }}
-                </a>
+                
                 <a href="{{ route('principal.dashboard') }}" class="dropdown-item">Mi Dashboard</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();

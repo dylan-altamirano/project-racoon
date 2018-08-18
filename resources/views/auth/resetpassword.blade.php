@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('contenido')
+<section id="password-reset">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -17,7 +18,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->nombre }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" disabled="disabled" name="email" value="{{ $user->email }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -72,4 +73,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

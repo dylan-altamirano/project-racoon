@@ -140,7 +140,8 @@ class RegisterController extends Controller
         ]);
       
         $user->roles()->attach($data['role']);
-        return $user;
+        return redirect()->route('principal.index')->with('info','El usuario has sido creado con éxito.');
+
     }
 
     public function getAdminCreate(){

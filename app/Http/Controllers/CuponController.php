@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Storage;
+
 use Illuminate\Support\Facades\Input;
 use App\Cupon;
+use Illuminate\Support\Facades\Storage;
 
 class CuponController extends Controller
 {
@@ -25,14 +26,20 @@ class CuponController extends Controller
             'descripcion' => 'required|min:10',
             'cant_ecomonedas' => 'required',
             'activo' => 'required',
+            'imagenCupon' => 'required'
         ]);
+
+        $ruta=$request->file('imagenCupon')->store(
+            'imagenes','public'
+          );
        
         //Creacion del objeto
         $cupon = new Cupon([
             'nombre' => $request->input('nombre'),
             'descripcion' => $request->input('descripcion'),
             'cant_ecomonedas' => $request->input('cant_ecomonedas'),
-            'activo' => (!$request->has('activo')?0:1)
+            'activo' => (!$request->has('activo')?0:1),
+            'imagen'=>$ruta
         ]);
 
         $cupon->save();
@@ -52,10 +59,17 @@ class CuponController extends Controller
             'nombre' => $request->input('nombre'),
             'descripcion' => $request->input('descripcion'),
             'cant_ecomonedas' => $request->input('cant_ecomonedas'),
-            'activo' => (!$request->has('activo')?0:1)
+            'activo' => (!$request->has('activo')?0:1),
+            'imagenCupon' => 'required'
         ]);
         $cupon = Cupon::find($request->input('id'));  
     
+        if(!($request->file('imagenCupon')===null) || !($request->file('imagenCupon')=="")){
+            Storage::disk('public')->delete($cupon->imagen);
+    
+           $ruta=$request->file('imagenCupon')->store('imagenes','public');
+           $cupon->imagen=$ruta;
+        }
 
         $cupon->nombre = $request->input('nombre');
         $cupon->descripcion = $request->input('descripcion');

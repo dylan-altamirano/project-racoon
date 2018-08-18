@@ -33,6 +33,9 @@
                                     <div class="card-title">
                                         <h3>{{ $cupon->nombre }}</h3>
                                     </div>
+                                    <div><img src="{{asset('storage/'.$cupon->imagen)}}"class="img-thumbnail img-fluid" 
+                                    alt="{{ $cupon->imagen}}" /></div>
+
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">{{ $cupon->descripcion }}

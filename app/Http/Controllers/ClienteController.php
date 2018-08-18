@@ -27,6 +27,12 @@ class ClienteController extends Controller
 
         $cliente = User::where('email', $request->emailCliente)->first();
 
+        foreach($cliente->roles as $rol){
+              if ($rol->nombre != 'Cliente') {
+                  $cliente = null;
+              }  
+        }
+
         return response()->json($cliente);
     }
 

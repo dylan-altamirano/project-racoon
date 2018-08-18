@@ -280,4 +280,35 @@ class CanjeController extends Controller
         return redirect()->route('materiales.index');
     }
 
+    public function reducirEnUno(Request $request, $id){
+
+        $material = Material::find($id);
+
+        $cart_ant = Session::has('cart') ? Session::get('cart') : null;
+
+        $cart = new Cart($cart_ant);
+
+        $cart->reducirCantidad($material, $material->id);
+
+        $request->session()->put('cart', $cart);
+
+        return redirect()->route('canjes.create');
+
+    }
+
+    public function eliminarElemento(Request $request, $id){
+
+        $material = Material::find($id);
+
+        $cart_ant = Session::has('cart') ? Session::get('cart') : null;
+
+        $cart = new Cart($cart_ant);
+
+        $cart->eliminarItem($material, $material->id);
+
+        $request->session()->put('cart', $cart);
+
+        return redirect()->route('canjes.create');
+    }
+
 }

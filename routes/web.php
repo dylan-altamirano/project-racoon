@@ -192,6 +192,20 @@ Route::group(['prefix'=>'canjes','middleware' => 'auth'], function (){
         'middleware' => 'can:admin-center,id'
     ]);
 
+     //Ruta para reducir -1 la cant del elemento en el shopping cart
+    Route::get('reducir-cant/{id}', [
+        'uses' => 'CanjeController@reducirEnUno',
+        'as' => 'canjes.reducirCant',
+        'middleware' => 'can:admin-center,id'
+    ]);
+
+     //Ruta para eliminar un elemento del shopping cart
+    Route::get('eliminar-material/{id}', [
+        'uses' => 'CanjeController@eliminarElemento',
+        'as' => 'canjes.eliminarMaterial',
+        'middleware' => 'can:admin-center,id'
+    ]);
+
     //Ruta para crear el canje
     Route::get('create',[
         'uses' => 'CanjeController@create',

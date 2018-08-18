@@ -65,6 +65,7 @@
                                         <th scope="col">Material</th>
                                         <th scope="col">Cantidad</th>
                                         <th scope="col">Precio</th>
+                                        <th scope="col">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,18 @@
                                             <td scope="col">{{ $item['item']['nombre']}}</td>
                                             <td scope="col">{{ $item['cant'] }}</td>
                                             <td scope="col">{{ '₡ '.$item['precio'] }}</td>
+                                            <td scope="col">
+                                                <div class="btn-group" role="group">
+                                                    <button id="btnGroupDropAcciones" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                          Acción
+                                                        </button>
+                                                    <div class="dropdown-menu" aria-labelledby="btnGroupDropAcciones">
+                                                        <a class="dropdown-item" href="{{ route('canjes.reducirCant',['id'=>$item['item']['id'] ]) }}">-1</a>
+                                                        <a class="dropdown-item" href="{{ route('canjes.eliminarMaterial',['id'=>$item['item']['id']]) }}">Eliminar</a>   
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                   @endforeach
 

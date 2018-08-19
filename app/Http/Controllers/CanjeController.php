@@ -17,6 +17,7 @@ use App\http\Requests;
 use PDF;
 use Illuminate\Mail\Mailer;
 use App\Mail\OrdenNotificacion;
+use App\Mail\CanjeNotificacion;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 
@@ -147,7 +148,7 @@ class CanjeController extends Controller
 
         //Enviar correo
 
-        Mail::to($cliente->email)->send(new OrdenNotificacion($canje, $cliente, $centro_acopio, $cart->items, $cart->cantidadTotal, $cart->precioTotal));
+        Mail::to($cliente->email)->send(new CanjeNotificacion($canje, $cliente, $centro_acopio, $cart->items, $cart->cantidadTotal, $cart->precioTotal));
 
         return redirect()->route('canjes.index')->with('info','El canje has sido creado con exito. Se le ha enviado la notificación al correo electrónico.');
     }

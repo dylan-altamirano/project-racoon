@@ -9,6 +9,17 @@
 
         <h2 class="text-center" style="margin-bottom:2%">Hola {{ Auth::user()->name }}, bienvenido a Ecomonedas!</h2>
 
+        @can('admin-all')
+        <div class="col-md-12" style="margin-bottom:4%">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="float-left">Administrar usuarios</h2>
+                    <a href="#" class="btn btn-dark btn-lg float-right"><i class="material-icons">supervisor_account</i></a>
+                </div>
+            </div>
+        </div>
+        @endcan
+
         @can('admin-center')
             <div class="col-md-12" style="margin-bottom:3%">
                 <div class="card">

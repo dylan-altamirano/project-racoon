@@ -10,7 +10,8 @@ use App\Cupon;
 use Session;
 use App\CartCupones;
 use App\CanjeCupon;
-
+use Mail;
+use App\Mail\CuponesCanjeados;
 
 class CanjeCuponController extends Controller
 {
@@ -126,10 +127,14 @@ class CanjeCuponController extends Controller
             //del total del canje al mismo.
             $cliente->balance_ecomonedas -= $cart->ecomonedasTotal;
             $cliente->save();    
+
+            //Envío de correo
+            Mail::to($cliente->email)->send(new CuponesCanjeados($canjeCupon, $cliente, $cart->items, $cart->cantidadTotal, $cart->ecomonedasTotal));    
+
         
             $this->limpiarShoppingCart($request);
 
-            return redirect()->route('billeteravirtual.index')->with('info', 'Los cupones han sido canjeados satisfactoriamente');
+            return redirect()->route('billeteravirtual.index')->with('info', 'Los cupones han sido canjeados satisfactoriamente. Se le ha enviado una notificación por correo.');
 
         }else{
 

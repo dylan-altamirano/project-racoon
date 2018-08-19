@@ -52,6 +52,24 @@ Route::group(['prefix'=>'auth'], function (){
         'uses' => 'Auth\RegisterController@index',
         'as' => 'auth.index'
     ]);
+
+
+    Route::get('edit', [
+        'uses' => 'Auth\RegisterController@edit',
+        'as' => 'auth.edit',
+        'middleware' => 'can:admin-all'
+    ]);
+
+    Route::post('update', [
+        'uses' => 'Auth\RegisterController@update',
+        'as' => 'auth.update',
+        'middleware' => 'can:admin-all'
+    ]);
+
+    Route::post('show', [
+        'uses' => 'Auth\RegisterController@getCliente',
+        'as' => 'auth.show'
+    ]);
    
 });
 

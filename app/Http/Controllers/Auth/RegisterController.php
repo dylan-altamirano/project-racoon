@@ -9,7 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Response;
+use Illuminate\Support\Facades\Input;
+use Session;
+use DB;
+use DateTime;
 class RegisterController extends Controller
 {
     /*
@@ -74,6 +78,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $cliente = User::where('email', $data['email'])->first(); 
+        if($cliente == null){
+
         $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -83,49 +91,73 @@ class RegisterController extends Controller
             'balance_ecomonedas' => 0,
             'password' => Hash::make($data['password']),
         ]);
-      
+
         $user->roles()->attach($data['role']);
+    }
         return $user;
     }
-
-    public function edit($id)
+  public function edit()
     {
-
-        $user = user::find($id);
-
-        return view('auth.edit',['user'=>$user]);
+        $users = User::all();
+        return view('auth.edit', ['users'=>$users]);
     }
 
     public function update(Request $request)
     {
         //Validacion
-        $this->validate($request, [
-            'name' => 'required|min:5',
-            'email' => 'required|min:10',
-            'direccion' => 'required',
-            'telefono' => 'required',
-            'activo' => 'required',
-            'balance_ecomonedas' => 0
+        $user = new User([
+            'name' => $request->input('name'),
+            'direccion' => $request->input('direccion'),
+            'telefono' => $request->input('telefono'),
+            'email' => $request->input('email')
         ]);
 
-        $user= User::find($request->input('id'));
-        
 
+        $cliente = User::where('email', $request['email'])->first(); 
+
+        if($cliente == null || $user->email == $request->input('emailCliente')){
+        $user->telefono = $request->input('telefono');
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->direccion = $request->input('direccion');
-        $user->telefono = $request->input('telefono');
-        $user->activo = (!$request->has('activo')?0:1);
-        $user->balance_ecomonedas = 0;
-
-        $user->save();
         
-        $user->roles()->attach($data['role']);
+        $updated_at=new DateTime();
 
-        return redirect()->route('principal.index')->with('info','El usuario '.$request->input('name').' has sido actualizado con éxito.');
+        DB::table('users')->where('id', $cliente->id)->update(['name' => $user->name, 'telefono' => $user->telefono, 
+            'email' => $user->email,'direccion' => $user->direccion, 'updated_at' => $updated_at]);
+    
+
+        }
+        else{
+            return redirect()->route('auth.edit')->with('info','El usuario '.$request->input('name').' no has sido actualizado con éxito.');
+
+        }
+        return redirect()->route('auth.edit')->with('info','El usuario '.$request->input('name').' has sido actualizado con éxito.');
 
     }
+    public function getCliente(Request $request)
+    {
 
+        $rules = array(
+            'emailCliente' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return reponse()->json(['errors' => $validator->errors()->all()]);
+        }
+
+        $cliente = User::where('email', $request->emailCliente)->first();
+
+        foreach($cliente->roles as $rol){
+              if ($rol->nombre != 'Administrador Centro Acopio') {
+                  $cliente = null;
+              }  
+        }
+
+        return response()->json($cliente);
+    }
 
     protected function createAdministrador(Request $data)
     {

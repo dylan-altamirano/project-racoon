@@ -1,8 +1,17 @@
 @extends('layouts.master')
-
+@include('partials.errors')
 @section('contenido')
 <section id="password-reset">
 <div class="container">
+
+ @if(Session::has('info'))
+        <div class="row">
+            <div class="col-md-12">
+                <p class="alert alert-info">{{Session::get('info')}}</p>
+            </div>
+        </div>
+        @endif
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

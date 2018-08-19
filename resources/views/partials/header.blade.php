@@ -29,17 +29,28 @@
                     <a class="nav-link js-scroll-trigger" href="{{ route('materiales.index') }}">Materiales</a>
                 </li>
                 @can('admin-all')
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('cupones.index') }}">Cupones</a>
-                </li>
-            
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('auth.registeradmin') }}">Crear usuarios</a>
-               </li>
 
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('auth.index') }}">Lista clientes</a>
+                {{--Usuarios--}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                          Usuarios
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                       
+
+                        <a class="dropdown-item js-scroll-trigger" href="{{ route('auth.registeradmin') }}">Crear usuarios</a>
+
+                         <a class="dropdown-item js-scroll-trigger" href="{{ route('auth.index') }}">Lista clientes</a>
+                         
+                         <a class="dropdown-item js-scroll-trigger" href="{{ route('auth.edit') }}">Actualizar administrador de CA</a>
+                    </div>
                 </li>
+                {{--Fin Usuarios--}}
+                <li class="nav-item">
+                 <a class="nav-link js-scroll-trigger" href="{{ route('cupones.index') }}">Cupones</a>
+                 </li>
                 @endcan
                
                 <li class="nav-item">

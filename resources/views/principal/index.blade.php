@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h2>Ecolones</h2>
+                    <h2>Ecodivisa CR</h2>
                     <p class="lead">Ya llegó a nuestro país, una nueva forma de hacer dinero. Estos son los beneficios con los 
                         que contamos:
                     </p>
@@ -35,6 +35,19 @@
                         <li>Sos un importante factor del cambio para nuestro planeta</li>
                         <li>Lo que sea</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="desarrollo_sostenible">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>¿Qué es el desarrollo sostenible?</h2>
+                    <p class="lead">La sostenibilidad es el desarrollo que satisface las necesidades del presente sin comprometer la capacidad de las futuras
+                    generaciones, garantizando el equilibrio entre el crecimiento económico, el cuidado del medio ambiente y el bienestar social.
+                    </p>
                 </div>
             </div>
         </div>

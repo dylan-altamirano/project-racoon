@@ -24,15 +24,9 @@ Route::group(['prefix'=>'auth'], function (){
     ]);
 
 
-    Route::post('update',[
-        'uses'=>'ResetController@update',
-        'as'=> 'auth.password'
-    ]);
-
-    Route::post('update',
-    [
-      'uses'=>'ResetController@update',
-      'as'=>'auth.update'
+    Route::post('actualizar',[
+        'uses'=>'ResetController@actualizar',
+        'as'=> 'auth.actualizar'
     ]);
   
     Route::get('create',
@@ -131,6 +125,10 @@ Route::group(['prefix'=>'centros'], function (){
         'middleware' => 'can:admin-all'
     ]);
 
+    Route::post('activar-centro/{centro}',[
+        'uses' => 'CentroAcopioController@activarCentro',
+        'as' => 'centros.activar'
+    ]);    
 
 
 });

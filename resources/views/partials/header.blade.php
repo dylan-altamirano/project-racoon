@@ -18,9 +18,9 @@
 
                         <a class="dropdown-item js-scroll-trigger" href="{{ route('centros.index') }}">Ver Centros</a>
 
-                    @auth
+                    @can('admin-all')
                         <a class="dropdown-item js-scroll-trigger" href="{{ route('centros.reporte') }}">Ver Gráfico</a>
-                    @endauth
+                    @endcan
                     </div>
                 </li>
                 {{--Fin centros de acopio--}}

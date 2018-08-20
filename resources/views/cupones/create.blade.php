@@ -49,8 +49,8 @@
                             
 
                             @csrf
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="{{ route('cupones.index') }}" class="btn btn-primary"> Cancelar</a>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="{{ route('cupones.index') }}" class="btn btn-success"> Cancelar</a>
                         </div>
                     </div>
 

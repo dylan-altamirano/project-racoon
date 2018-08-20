@@ -28,30 +28,33 @@
                 @if($users != null)
                     
                     @foreach($users as $user)
-                    @foreach($roles as $rol)
-                    @if($user->roles->contains($rol->id) && $rol->id == 3)
+                        @foreach($roles as $rol)
+                            @if($user->roles->contains($rol->id) && $rol->nombre == 'Cliente')
+                                    
+                                <div class="col-md-4">
+                                    <div class="card mb-4 shadow-sm">
+                                        <div class="card-title">
+                                        <h2>{{ $user->name }}</h2>
+                                        
+                                        </div>
+                                        <div class="card-body">
+                                        <h3>{{ $user->email }}</h3>
+                                        
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <small class="text-muted">Actualizado a las: {{ date_format($user->updated_at, 'g:ia \o\n l jS F Y') }}</small>
+                                        </div>
+                                    </div>
+                                </div>
                             
-                        <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                <div class="card-title">
-                                <h2>{{ $user->name }}</h2>
                                 
-                                </div>
-                                <div class="card-body">
-                                <h3>{{ $user->email }}</h3>
-                                
-                                </div>
-                                <div class="card-footer text-muted">
-                                    <small class="text-muted">Actualizado a las: {{ date_format($user->updated_at, 'g:ia \o\n l jS F Y') }}</small>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        
-                        @endif  
-                    @endforeach
+                                @endif  
+                        @endforeach
                     
                     @endforeach
+                @else                
+                        <p>No hay clientes registrados</p>
+
                 @endif   
                 </div>
     

@@ -26,7 +26,7 @@ class ResetController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function actualizar(Request $request)
     {
         $user2 = User::find($request->input('id'));
      
@@ -46,7 +46,7 @@ class ResetController extends Controller
             $user->save();
         }
         else{
-            return redirect()->route('auth.resetpassword',['id' => Auth::user()->id])->with('info', 'La contraseña no cohincide');
+            return redirect()->route('auth.resetpassword',['id' => Auth::user()->id])->with('info', 'La contraseña no coincide');
         
         }
         

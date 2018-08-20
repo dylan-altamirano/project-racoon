@@ -13,8 +13,24 @@
         <div class="col-md-12" style="margin-bottom:4%">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="float-left">Administrar usuarios</h2>
-                    <a href="#" class="btn btn-dark btn-lg float-right"><i class="material-icons">supervisor_account</i></a>
+                    <h2 class="float-left">Crear Usuarios</h2>
+                    <a href="{{ route('auth.registeradmin') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">supervisor_account</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-bottom:4%">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="float-left">Actualizar Administradores de centros de acopio</h2>
+                    <a href="{{ route('auth.edit') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">group_add</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-bottom:4%">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="float-left">Listado de clientes</h2>
+                    <a href="{{ route('auth.index') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">menu</i></a>
                 </div>
             </div>
         </div>
@@ -25,7 +41,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="float-left">Canjear Materiales</h2>
-                    <a href="{{ route('materiales.index') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">monetization_on</i></a>
+                    <a href="{{ route('canjes.index') }}" class="btn btn-dark btn-lg float-right"><i class="material-icons">monetization_on</i></a>
                     </div>
                 </div>
             </div>

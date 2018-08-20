@@ -55,19 +55,19 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                     @can('admin-all')
                                         <div class="btn-group">
-                                            <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                            <a href="{{ route('materiales.edit',['id'=> $material->id]) }}" class="btn btn-sm btn-outline-success">Editar</a>
                                     
                                         </div>
                                         <div class="btn-group">
                                           <form action="{{ route('materiales.delete',['id'=> $material->id]) }}" method="post">  
                                             @csrf 
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Eliminar</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
                                         </form>
                                         </div>
                                     @endcan
                                     @can('admin-center')
                                         <div class="btn-group">    
-                                            <a href="{{ route('canjes.agregarMaterial',['id'=>$material->id]) }}" class="btn btn-sm btn-outline-secondary">Añadir al canje</a>
+                                            <a href="{{ route('canjes.agregarMaterial',['id'=>$material->id]) }}" class="btn btn-sm btn-outline-success">Añadir al canje</a>
                                         </div>
                                     @endcan      
                                     

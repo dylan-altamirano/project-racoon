@@ -18,7 +18,7 @@
                 <div class="card-header">{{ __('Cambiar la Contraseña') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('auth.update') }}">
+                    <form method="POST" action="{{ route('auth.actualizar') }}" enctype="multipart/form-data">
                         @csrf
 
                         
@@ -71,7 +71,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Cambiar Contraseña') }}
                                 </button>
                             </div>

@@ -50,7 +50,7 @@ class CanjeController extends Controller
 
         $centros_acopio = CentroAcopio::all();
 
-        return view('canjes.index', ['canjes' => $canjes, 'centros_acopio'=> $centros_acopio]);
+        return view('canjes.index', ['canjes' => $canjes, 'centro_acopio'=> $centro_acopio]);
     }
 
     /**
@@ -60,6 +60,7 @@ class CanjeController extends Controller
      */
     public function create()
     {
+
         //Obtiene el id del usuario logueado en el sistema
         $user_id = Auth::id();
 
@@ -67,14 +68,22 @@ class CanjeController extends Controller
 
         $centro_acopio = ($centro_acopio!=null)? $centro_acopio:'No posee centro de acopio';
 
-        //Obtiene el carro con los materiales previamente guardados
-        $cart_ant = Session::has('cart') ? Session::get('cart') : null;
 
-        $cart = new Cart($cart_ant);
+        if ($centro_acopio->activo == 1 && $centro_acopio != null) {
+            
+            //Obtiene el carro con los materiales previamente guardados
+            $cart_ant = Session::has('cart') ? Session::get('cart') : null;
 
-        $cliente = null;
+            $cart = new Cart($cart_ant);
 
-        return view('canjes.create', ['cliente'=>$cliente,'centro_acopio' => $centro_acopio,'productos'=>$cart->items,'cantidadTotal'=>$cart->cantidadTotal, 'precioTotal'=>$cart->precioTotal]);
+            $cliente = null;
+
+            return view('canjes.create', ['cliente' => $cliente, 'centro_acopio' => $centro_acopio, 'productos' => $cart->items, 'cantidadTotal' => $cart->cantidadTotal, 'precioTotal' => $cart->precioTotal]);
+
+        }
+
+        return redirect()->route('canjes.index')->with('info', 'Lo sentimos, no se puede realizar canjes ya que su centro de acopio se encuentra deshabilitado o no posee uno asignado todavía.Por favor, contacte a su administrador.');
+       
     }
 
     /**
@@ -225,7 +234,7 @@ class CanjeController extends Controller
 
         foreach($materiales as $material){
             $cantidadTotal+= $material->pivot->cantidad;
-            $precioTotal += $material->precio_unitario;
+            $precioTotal += ($material->precio_unitario* $material->pivot->cantidad);
         }
 
         return view('canjes.show', ['canje'=>$canje,'centro_acopio'=>$centro_acopio, 'cliente'=>$cliente,'admin_centro'=>$admin_centro,'materiales'=>$materiales,'cantidadTotal'=>$cantidadTotal,'precioTotal'=>$precioTotal]);
@@ -268,17 +277,28 @@ class CanjeController extends Controller
 
     public function agregarMaterial(Request $request, $id){
 
-        $material = Material::find($id);
+        $centro_acopio = CentroAcopio::where('user_id', Auth::id())->first();
 
-        $cart_ant = Session::has('cart')?Session::get('cart'):null;
+        if($centro_acopio->activo == 1){
 
-        $cart = new Cart($cart_ant);
 
-        $cart->agregar($material, $material->id);
+            $material = Material::find($id);
 
-        $request->session()->put('cart', $cart);
+            $cart_ant = Session::has('cart') ? Session::get('cart') : null;
 
-        return redirect()->route('materiales.index');
+            $cart = new Cart($cart_ant);
+
+            $cart->agregar($material, $material->id);
+
+            $request->session()->put('cart', $cart);
+
+            return redirect()->route('materiales.index'); 
+
+
+        }else{
+            return redirect()->route('canjes.index')->with('info', 'Lo sentimos, no se puede realizar canjes ya que su centro de acopio se encuentra deshabilitado o no posee uno asignado todavía.Por favor, contacte a su administrador.');
+        }
+
     }
 
     public function reducirEnUno(Request $request, $id){

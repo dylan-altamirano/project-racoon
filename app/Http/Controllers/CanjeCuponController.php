@@ -12,6 +12,7 @@ use App\CartCupones;
 use App\CanjeCupon;
 use Mail;
 use App\Mail\CuponesCanjeados;
+use PDF;
 
 class CanjeCuponController extends Controller
 {

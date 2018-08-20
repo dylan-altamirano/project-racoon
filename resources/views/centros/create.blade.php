@@ -59,8 +59,8 @@
                             <select id="role" class="form-control" name="role">
                              @foreach($users as $user)
                                 @foreach($roles as $rol)
-                                    @if($user->roles->contains($rol->id) && $rol->id == 2)
-                                        <option value="{{$user->id}}">{{$user->email}}</option>
+                                    @if($user->roles->contains($rol->id) && $rol->nombre == 'Administrador Centro Acopio')
+                                        <option value="{{$user->id}}">{{$user->id.'-'.$user->name}}</option>
                                     @endif
                                 @endforeach
                                 @endforeach

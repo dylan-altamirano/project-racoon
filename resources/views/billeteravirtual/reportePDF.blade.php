@@ -112,9 +112,9 @@
                 <thead>
                     <tr>
                         <th>{{$cupon->nombre}}</th>
-                       {{--<th>
-                            <img src="{{public_path().'/storage/'.$vj->imagen}}" alt="{{$vj->nombre}}" />
-                        </th>--}}
+                       <th>
+                            <img src="{{ public_path().'/storage/'.$cupon->imagen}}" alt="{{$cupon->nombre}}" />
+                        </th>
 
                     </tr>
                 </thead>
@@ -141,7 +141,7 @@
         @endfor
     </main>
     <footer>
-        Ecomonedas Costa Rica 2018 - Todos los derechos reservados
+        Ecodivisa Costa Rica 2018 - Todos los derechos reservados
     </footer>
 </body>
 

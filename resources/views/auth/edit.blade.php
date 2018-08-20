@@ -110,8 +110,15 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-success">
                                         {{ __('Actualizar') }}
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-success" onclick="location.reload()">
+                                        <i class="material-icons">
+                                        delete
+                                        </i>
                                     </button>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@
         <div class="album py-5 bg-light">
         @can('admin-all')
             <div class="container" style="margin-bottom:5px">
-                <a href="{{ route('cupones.create') }}" class="btn btn-primary">Crear nuevo</a>
+                <a href="{{ route('cupones.create') }}" class="btn btn-success">Crear nuevo</a>
             </div>
         @endcan
             <div class="container">

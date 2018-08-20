@@ -18,7 +18,7 @@
        <!-- <div class="container text-center"><img src="storage/imagenes/centros.PNG" alt="boat" style="width:100%;height:349px;width:500px;"></div>-->
         @can('admin-all')
             <div class="container" style="margin-bottom:5px">
-                <a href="{{ route('centros.create') }}" class="btn btn-primary">Crear nuevo</a>
+                <a href="{{ route('centros.create') }}" class="btn btn-success">Crear nuevo</a>
             </div>
         @endcan
             <div class="container">
@@ -67,6 +67,7 @@
                     @endcan
 
                     --}}
+                @cannot('admin-all')    
 
                     @if($centro->activo == 1)
                    
@@ -102,6 +103,7 @@
                             </div>
                         </div>
                     @endif   
+                @endcannot
                     
                     @can('admin-all')
                         <div class="col-md-4">

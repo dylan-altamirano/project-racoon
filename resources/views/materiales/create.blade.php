@@ -50,7 +50,7 @@
                                 <input type="file" class="form-control-file" name="datafile" id="datafile" size="40">
                             </div>
                             @csrf
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit" class="btn btn-success">Guardar</button>
                         <a href="{{ route('materiales.index') }}" class="btn btn-primary"> Cancelar</a>
                         </div>
                     </div>

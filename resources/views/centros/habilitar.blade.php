@@ -4,12 +4,12 @@
 
 @include('partials.errors')
 
-<section id="create-centros">
+<section id="create-centros" style="margin-bottom:4%">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
 
-            <form action="{{ route('centros.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('centros.activar', ['centro'=> $centros]) }}" method="POST" enctype="multipart/form-data">
                <!--Nombre-->
                <div class="form-group">
                                 <label for="nombre">Nombre</label>

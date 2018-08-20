@@ -131,6 +131,14 @@ class CentroAcopioController extends Controller
      */
     public function update(Request $request)
     {
+
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+            'direccion_exacta' => 'required|min:10',
+            'provincia' => 'required',
+            'activo' => 'required',
+        ]);
+
         //Validacion
         $centros = new CentroAcopio([
             'nombre' => $request->input('nombre'),
@@ -154,6 +162,21 @@ class CentroAcopioController extends Controller
         $centros->save();
 
         return redirect()->route('centros.index')->with('info','El centro de acopio '.$request->input('nombre').' has sido actualizado con éxito.');
+
+    }
+
+    public function activarCentro(CentroAcopio $centro, Request $request){
+
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+        ]);
+
+
+        $centro->activo = (!$request->has('activo') ? 0 : 1);
+
+        $centro->save();
+
+        return redirect()->route('centros.index')->with('info', 'El centro de acopio ' . $request->input('nombre') . ' has sido actualizado con éxito.');
 
     }
 

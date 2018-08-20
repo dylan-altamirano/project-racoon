@@ -127,7 +127,7 @@
                     <div class="card-footer">
                         @csrf
 
-                        @if(Session::get('cart')==null)
+                        @if(Session::get('cart')==null || $productos == null)
                             <button type="submit" name="submit" id="submit" class="btn btn-success btn-lg float-right" disabled>Crear Canje<i class="material-icons">beenhere</i></button>
                         @else
                             <button type="submit" name="submit" id="submit" class="btn btn-success btn-lg float-right">Crear Canje<i class="material-icons">beenhere</i></button>
